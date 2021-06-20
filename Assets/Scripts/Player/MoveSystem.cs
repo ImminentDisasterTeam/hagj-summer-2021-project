@@ -7,7 +7,7 @@ public class MoveSystem : MonoBehaviour {
     public float rotationSpeed = 1440;
     public float rollSpeed = 16;
     public float speedWithShield = 3;
-    bool isHoldingShield = false;
+    public bool isHoldingShield = false;
     public void SetIsHoldingShield(bool value) {
         isHoldingShield = value;
     }

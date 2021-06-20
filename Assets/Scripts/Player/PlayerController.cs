@@ -5,7 +5,6 @@ public class PlayerController : MonoBehaviour {
     InputDetector _inputDetector;
     Vector2 _moveDirection;
     Vector2 _lookDirection;
-
     MoveSystem _moveSystem;
     Camera _mainCamera;
     Animator _animatorLegs;
@@ -80,7 +79,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         //angle of movement
-        float angle = signedAngleBetween(_moveDirection, _lookDirection);
+        float angle = SignedAngleWithLookDirection(_moveDirection);
         if (angle < angleOfVerticalMovement/2 || angle > 90 + angleOfVerticalMovement/2) {
             Debug.Log("Vertical Movement");
             _animatorLegs.SetBool("moveVertical", true);
@@ -122,8 +121,8 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    float signedAngleBetween (Vector3 a, Vector3 b) {
-        float angle = Vector3.Angle(a, b);
+    public float SignedAngleWithLookDirection (Vector2 a) {
+        float angle = Vector2.Angle(a, _lookDirection);
 
         if( Mathf.Sign(angle) == -1)
             angle = 360 + angle;
