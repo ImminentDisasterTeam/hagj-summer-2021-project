@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerFighting : MonoBehaviour
 {
+    //attack
     [SerializeField] int comboHitsNumber = 3;
     [SerializeField] float maxComboDelay = 0.9f;
     int hitNumber = -1;

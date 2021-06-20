@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 
 public class MoveSystem : MonoBehaviour {
-    // TODO: rework (remove acceleration & deceleration, rotation speed and MAYBE merge move and turn
     public float acceleration = 10;
     public float deceleration = 15;
     public float speed = 8;
     public float rotationSpeed = 1440;
+
+    public float rollSpeed = 16;
 
     Rigidbody2D _rb;
     Vector2 _lastLookDirection;
@@ -18,12 +19,8 @@ public class MoveSystem : MonoBehaviour {
         _rb.MovePosition(_rb.position + moveDirection.normalized * (speed * Time.fixedDeltaTime));
     }
 
-    Vector2 ApplySpeedConstraint(Vector2 speed, float maxSpeed) {
-        if (speed.magnitude <= maxSpeed) {
-            return speed;
-        }
-
-        return speed.normalized * maxSpeed;
+    public void Roll(Vector2 rollDirection) {
+        _rb.MovePosition(_rb.position + rollDirection.normalized * (rollSpeed * Time.fixedDeltaTime));
     }
 
     public void Turn(Vector2 lookDirection) {

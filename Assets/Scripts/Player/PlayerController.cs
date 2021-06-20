@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour {
     InputDetector _inputDetector;
@@ -10,11 +11,18 @@ public class PlayerController : MonoBehaviour {
     Animator _animatorLegs;
     Animator _animatorTop;
     [SerializeField] float angleOfVerticalMovement = 90f;
+    [SerializeField] float rollCoolDown = 3f;
+    bool rollReady = true;
 
-    bool isControllable = true;
+    bool canMove = true;
 
-    public void SetIsControllable(bool value) {
-        isControllable = value;
+    public void SetCanMove(bool value) {
+        canMove = value;
+    }
+    bool isRolling = false;
+
+    public void SetIsRolling(bool value) {
+        isRolling = value;
     }
 
     const string ControllerPrefix = "Controller";
@@ -30,6 +38,7 @@ public class PlayerController : MonoBehaviour {
 
     void Update() {
         GetInputs(_inputDetector.State);
+        RollDetector();
     }
 
     void GetInputs(InputDetector.EInputState inputState) {
@@ -42,7 +51,7 @@ public class PlayerController : MonoBehaviour {
         var moveHorizontal = Input.GetAxisRaw(prefix + "MoveHorizontal");
         var moveVertical = Input.GetAxisRaw(prefix + "MoveVertical");
         _moveDirection = new Vector2(moveHorizontal, moveVertical);
-        if (_moveDirection.Equals(Vector3.zero)) {
+        if (_moveDirection.Equals(Vector3.zero) || !canMove) {
             Debug.Log("Idle");
             _animatorLegs.SetBool("isMoving", false);
             _animatorTop.SetBool("isMoving", false);
@@ -54,13 +63,15 @@ public class PlayerController : MonoBehaviour {
         }
         
         //rotation
-        if (inputState == InputDetector.EInputState.MouseKeyboard) {
-            var mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            _lookDirection = (mousePos - transform.position);
-        } else {
-            var lookHorizontal = Input.GetAxisRaw("ControllerLookHorizontal");
-            var lookVertical = Input.GetAxisRaw("ControllerLookVertical");
-            _lookDirection = new Vector2(lookHorizontal, lookVertical);
+        if (!isRolling) {
+            if (inputState == InputDetector.EInputState.MouseKeyboard) {
+                var mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+                _lookDirection = (mousePos - transform.position);
+            } else {
+                var lookHorizontal = Input.GetAxisRaw("ControllerLookHorizontal");
+                var lookVertical = Input.GetAxisRaw("ControllerLookVertical");
+                _lookDirection = new Vector2(lookHorizontal, lookVertical);
+            }
         }
 
         //angle of movement
@@ -75,9 +86,35 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    void RollDetector() {
+        if (rollReady == false)
+            return;
+        if (Input.GetButtonDown("Dodge")) {
+            StartCoroutine(RollCoolDownCoro(rollCoolDown));
+            _animatorTop.SetTrigger("roll");
+        }
+        else {
+            _animatorTop.ResetTrigger("roll");
+        }
+    }
+
+    IEnumerator RollCoolDownCoro(float rollCoolDown) {
+        rollReady = false;
+        yield return new WaitForSeconds(rollCoolDown);
+        rollReady = true;
+    }
+
+
     void FixedUpdate() {
-        _moveSystem.Move(_moveDirection);
-        _moveSystem.Turn(_lookDirection);
+        if (canMove) {
+            _moveSystem.Move(_moveDirection);
+        }
+        if (!isRolling) {
+            _moveSystem.Turn(_lookDirection);
+        }
+        if (isRolling) {
+            _moveSystem.Roll(_lookDirection);
+        }
     }
 
     float signedAngleBetween (Vector3 a, Vector3 b) {
