@@ -1,16 +1,10 @@
 ﻿using UnityEngine;
 
 public class MoveSystem : MonoBehaviour {
-    public float acceleration = 10;
-    public float deceleration = 15;
-    public float speed = 8;
-    public float rotationSpeed = 1440;
-    public float rollSpeed = 16;
-    public float speedWithShield = 3;
-    public bool isHoldingShield = false;
-    public void SetIsHoldingShield(bool value) {
-        isHoldingShield = value;
-    }
+    [SerializeField] float speed = 8;
+    [SerializeField] float rollSpeed = 16;
+    [SerializeField] float speedWithShield = 3;
+    public bool isHoldingShield;
 
     Rigidbody2D _rb;
     Vector2 _lastLookDirection;
@@ -20,15 +14,15 @@ public class MoveSystem : MonoBehaviour {
         _lastLookDirection = _rb.transform.forward;
     }
     public void Move(Vector2 moveDirection) {
-        if (isHoldingShield) {
-            _rb.MovePosition(_rb.position + moveDirection.normalized * (speedWithShield * Time.fixedDeltaTime));
-        } else {
-            _rb.MovePosition(_rb.position + moveDirection.normalized * (speed * Time.fixedDeltaTime));
-        }
+        _rb.velocity = moveDirection.normalized * (isHoldingShield ? speedWithShield : speed);
     }
 
     public void Roll(Vector2 rollDirection) {
-        _rb.MovePosition(_rb.position + rollDirection.normalized * (rollSpeed * Time.fixedDeltaTime));
+        if (rollDirection == Vector2.zero) {
+            rollDirection = _lastLookDirection;
+        }
+        
+        _rb.velocity = rollDirection.normalized * rollSpeed;
     }
 
     public void Turn(Vector2 lookDirection) {
@@ -38,11 +32,7 @@ public class MoveSystem : MonoBehaviour {
         }
         _lastLookDirection = lookDirection;
 
-        var rawAngle = Vector2.SignedAngle(transform.up, lookDirection);
-        var turnDirection = Mathf.Sign(rawAngle);
-        var maxRotation = rotationSpeed * Time.deltaTime;
-
-        var angle = turnDirection * Mathf.Min(Mathf.Abs(rawAngle), maxRotation);
+        var angle = Vector2.SignedAngle(transform.up, lookDirection);
         transform.Rotate(Vector3.forward, angle);
     }
 }

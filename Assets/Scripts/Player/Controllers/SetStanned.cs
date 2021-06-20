@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class SetStanned : StateMachineBehaviour {
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-        animator.GetComponent<MoveSystem>().SetIsHoldingShield(false);
-        animator.GetComponent<PlayerFighting>().SetCanAttack(false);
-        animator.GetComponent<PlayerController>().SetIsRolling(false);
-        animator.GetComponent<PlayerController>().SetCanRoll(false);
-        animator.GetComponent<PlayerController>().SetCanMove(false);
-
+        animator.GetComponent<MoveSystem>().isHoldingShield = false;
+        animator.GetComponent<PlayerFighting>().canAttack = false;
+        animator.GetComponent<PlayerController>().IsRolling = false;
+        animator.GetComponent<PlayerController>().CanRoll = false;
+        animator.GetComponent<PlayerController>().CanMove = false;
     }
 }

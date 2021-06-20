@@ -1,96 +1,88 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerFighting : MonoBehaviour
-{
+public class PlayerFighting : MonoBehaviour {
     //health
     [SerializeField] float health = 100;
-    float curHealth;
+    float _currentHealth;
+
     //shield
-    [SerializeField] float shieldRadius = 90;
+    [SerializeField] float shieldAngleWidth = 90;
     [Range(0f, 100f)] float percentageOfBlockedDamage = 90;
     [SerializeField] float shieldStamina = 100;
-    [SerializeField] float BlockStaminaRequire = 10;
-    float curShieldStamina;
+    [SerializeField] float blockStaminaRequired = 10;
+    float _currentShieldStamina;
+
     //attack
     [SerializeField] int comboHitsNumber = 3;
     [SerializeField] float maxComboDelay = 0.9f;
-    int hitNumber = -1;
-    float lastClickedTime = 0f;
-    bool canAttack = true;
-    public void SetCanAttack(bool value) {
-        canAttack = value;
-    }
-
+    int _hitNumber = -1;
+    float _lastClickedTime;
+    public bool canAttack = true;
 
     Animator _animatorLegs;
     Animator _animatorTop;
-    void Start()
-    {
+
+    void Start() {
         _animatorLegs = transform.GetChild(0).GetComponent<Animator>();
         _animatorTop = GetComponent<Animator>();
-        curHealth = health;
-        curShieldStamina = shieldStamina;
+        _currentHealth = health;
+        _currentShieldStamina = shieldStamina;
     }
 
-    void Update()
-    {
-        if (Time.time - lastClickedTime > maxComboDelay) {
-            hitNumber = -1;
+    void Update() {
+        if (Time.time - _lastClickedTime > maxComboDelay) {
+            _hitNumber = -1;
         }
+
         if (Input.GetButtonDown("Attack") && canAttack) {
-            lastClickedTime = Time.time;
-            hitNumber++;
-            hitNumber = hitNumber % comboHitsNumber;
-            Debug.Log("Attack " + hitNumber);
-            _animatorTop.SetInteger("comboHitNumber", hitNumber);
+            _lastClickedTime = Time.time;
+            _hitNumber++;
+            _hitNumber %= comboHitsNumber;
+            Debug.Log("Attack " + _hitNumber);
+            _animatorTop.SetInteger("comboHitNumber", _hitNumber);
             _animatorTop.SetTrigger("attack");
-        }
-        else {
+        } else {
             _animatorTop.ResetTrigger("attack");
         }
 
-        if (Input.GetButton("Block")) {
-            _animatorTop.SetBool("holdShield", true);
-        }
-        else {
-            _animatorTop.SetBool("holdShield", false);
-        }
+        _animatorTop.SetBool("holdShield", Input.GetButton("Block"));
     }
 
-    void BeDamaged(int damage) {
+    void GetDamaged(int damage) {
         _animatorTop.SetTrigger("damaged");
-        curHealth -= damage;
+        _currentHealth -= damage;
     }
 
     void BlockHit(int damage) {
         if (shieldStamina > 0) {
             Debug.Log("BLOCK");
             _animatorTop.SetTrigger("blockHit");
-            curHealth -= damage*(100-percentageOfBlockedDamage)/100;
-            shieldStamina -= BlockStaminaRequire;
+            _currentHealth -= damage * (100 - percentageOfBlockedDamage) / 100;
+            shieldStamina -= blockStaminaRequired;
         } else {
             _animatorTop.SetTrigger("shieldBroken");
-            curHealth -= damage;
+            _currentHealth -= damage;
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.tag == "Enemy") {
-            if (GetComponent<MoveSystem>().isHoldingShield) {
-                Vector2 hitPoint = other.ClosestPoint(transform.position);
-                Vector2 posPoint = transform.position;
-                Vector2 hitDirection = hitPoint - posPoint;
-                float angle = gameObject.GetComponent<PlayerController>().SignedAngleWithLookDirection(hitDirection);
-                if (angle < shieldRadius/2) {
-                    BlockHit(10);
-                } else {
-                    BeDamaged(10);
-                }
+    void OnTriggerEnter2D(Collider2D other) {
+        if (!other.gameObject.CompareTag("Enemy")) {
+            return;
+        }
+
+        if (GetComponent<MoveSystem>().isHoldingShield) {
+            var hitPoint = other.ClosestPoint(transform.position);
+            Vector2 posPoint = transform.position;
+            var hitDirection = hitPoint - posPoint;
+           
+            var angle = gameObject.GetComponent<PlayerController>().SignedAngleWithLookDirection(hitDirection);
+            if (angle < shieldAngleWidth / 2) {
+                BlockHit(10);
             } else {
-                BeDamaged(10);
+                GetDamaged(10);
             }
+        } else {
+            GetDamaged(10);
         }
     }
 }

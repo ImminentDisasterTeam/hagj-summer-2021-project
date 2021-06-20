@@ -11,23 +11,11 @@ public class PlayerController : MonoBehaviour {
     Animator _animatorTop;
     [SerializeField] float angleOfVerticalMovement = 90f;
     [SerializeField] float rollCoolDown = 3f;
-    bool rollReady = true;
-
-    bool canMove = true;
-
-    public void SetCanMove(bool value) {
-        canMove = value;
-    }
-    bool isRolling = false;
-
-    public void SetIsRolling(bool value) {
-        isRolling = value;
-    }
-
-    bool canRoll = true;
-    public void SetCanRoll(bool value) {
-        canRoll = value;
-    }
+    bool _rollReady = true;
+    
+    public bool CanMove { set; private get; }
+    public bool IsRolling { set; private get; }
+    public bool CanRoll { set; private get; } = true;
 
     const string ControllerPrefix = "Controller";
     
@@ -55,7 +43,7 @@ public class PlayerController : MonoBehaviour {
         var moveHorizontal = Input.GetAxisRaw(prefix + "MoveHorizontal");
         var moveVertical = Input.GetAxisRaw(prefix + "MoveVertical");
         _moveDirection = new Vector2(moveHorizontal, moveVertical);
-        if (_moveDirection.Equals(Vector3.zero) || !canMove) {
+        if (_moveDirection.Equals(Vector3.zero) || !CanMove) {
             Debug.Log("Idle");
             _animatorLegs.SetBool("isMoving", false);
             _animatorTop.SetBool("isMoving", false);
@@ -67,7 +55,7 @@ public class PlayerController : MonoBehaviour {
         }
         
         //rotation
-        if (!isRolling) {
+        if (!IsRolling) {
             if (inputState == InputDetector.EInputState.MouseKeyboard) {
                 var mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
                 _lookDirection = (mousePos - transform.position);
@@ -79,53 +67,52 @@ public class PlayerController : MonoBehaviour {
         }
 
         //angle of movement
-        float angle = SignedAngleWithLookDirection(_moveDirection);
+        var angle = SignedAngleWithLookDirection(_moveDirection);
         if (angle < angleOfVerticalMovement/2 || angle > 90 + angleOfVerticalMovement/2) {
             Debug.Log("Vertical Movement");
             _animatorLegs.SetBool("moveVertical", true);
-        }
-        else {
+        } else {
             Debug.Log("Horizontal Movement");
             _animatorLegs.SetBool("moveVertical", false);
         }
     }
 
     void RollDetector() {
-        if (rollReady == false || !canRoll) 
+        if (_rollReady == false || !CanRoll) 
             return;
         if (Input.GetButtonDown("Dodge")) {
             StartCoroutine(RollCoolDownCoro(rollCoolDown));
             _animatorTop.SetTrigger("roll");
-        }
-        else {
+        } else {
             _animatorTop.ResetTrigger("roll");
         }
     }
 
     IEnumerator RollCoolDownCoro(float rollCoolDown) {
-        rollReady = false;
+        _rollReady = false;
         yield return new WaitForSeconds(rollCoolDown);
-        rollReady = true;
+        _rollReady = true;
     }
 
 
     void FixedUpdate() {
-        if (canMove) {
+        if (CanMove) {
             _moveSystem.Move(_moveDirection);
         }
-        if (!isRolling) {
+        if (!IsRolling) {
             _moveSystem.Turn(_lookDirection);
         }
-        if (isRolling) {
-            _moveSystem.Roll(_lookDirection);
+        if (IsRolling) {
+            _moveSystem.Roll(_moveDirection);
         }
     }
 
-    public float SignedAngleWithLookDirection (Vector2 a) {
-        float angle = Vector2.Angle(a, _lookDirection);
+    public float SignedAngleWithLookDirection(Vector2 a) {
+        var angle = Vector2.SignedAngle(a, _lookDirection);
 
-        if( Mathf.Sign(angle) == -1)
+        if(Mathf.Sign(angle) == -1) {
             angle = 360 + angle;
+        }
 
         return angle;
     }
