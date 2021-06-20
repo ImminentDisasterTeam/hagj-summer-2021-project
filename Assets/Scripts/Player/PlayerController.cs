@@ -11,6 +11,12 @@ public class PlayerController : MonoBehaviour {
     Animator _animatorTop;
     [SerializeField] float angleOfVerticalMovement = 90f;
 
+    bool isControllable = true;
+
+    public void SetIsControllable(bool value) {
+        isControllable = value;
+    }
+
     const string ControllerPrefix = "Controller";
     
     void Start() {
@@ -32,6 +38,7 @@ public class PlayerController : MonoBehaviour {
             prefix = ControllerPrefix;
         }
         
+        //movement
         var moveHorizontal = Input.GetAxisRaw(prefix + "MoveHorizontal");
         var moveVertical = Input.GetAxisRaw(prefix + "MoveVertical");
         _moveDirection = new Vector2(moveHorizontal, moveVertical);
@@ -46,7 +53,7 @@ public class PlayerController : MonoBehaviour {
             _animatorTop.SetBool("isMoving", true);
         }
         
-
+        //rotation
         if (inputState == InputDetector.EInputState.MouseKeyboard) {
             var mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
             _lookDirection = (mousePos - transform.position);
@@ -56,6 +63,7 @@ public class PlayerController : MonoBehaviour {
             _lookDirection = new Vector2(lookHorizontal, lookVertical);
         }
 
+        //angle of movement
         float angle = signedAngleBetween(_moveDirection, _lookDirection);
         if (angle < angleOfVerticalMovement/2 || angle > 90 + angleOfVerticalMovement/2) {
             Debug.Log("Vertical Movement");
