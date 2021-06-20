@@ -15,22 +15,7 @@ public class MoveSystem : MonoBehaviour {
         _lastLookDirection = _rb.transform.forward;
     }
     public void Move(Vector2 moveDirection) {
-        var velocityVector = _rb.velocity;
-        if (moveDirection.magnitude != 0) {
-            velocityVector += moveDirection.normalized * (acceleration * Time.fixedDeltaTime);
-        }
-        // slow down
-        else {
-            var speedDecrement = deceleration * Time.fixedDeltaTime;
-            var velocityTooSmall = _rb.velocity.magnitude <= speedDecrement;
-            if (velocityTooSmall) {
-                velocityVector = Vector2.zero;
-            } else {
-                var decelerationVector = _rb.velocity.normalized * speedDecrement;
-                velocityVector -= decelerationVector;
-            }
-        }
-        _rb.velocity = ApplySpeedConstraint(velocityVector, speed);
+        _rb.MovePosition(_rb.position + moveDirection.normalized * (speed * Time.fixedDeltaTime));
     }
 
     Vector2 ApplySpeedConstraint(Vector2 speed, float maxSpeed) {

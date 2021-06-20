@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour {
 
     MoveSystem _moveSystem;
     Camera _mainCamera;
+    Animator _animatorLegs;
+    Animator _animatorTop;
+    [SerializeField] float angleOfVerticalMovement = 90f;
 
     const string ControllerPrefix = "Controller";
     
@@ -14,6 +17,9 @@ public class PlayerController : MonoBehaviour {
         _inputDetector = GetComponent<InputDetector>();
         _moveSystem = GetComponent<MoveSystem>();
         _mainCamera = Camera.main;
+        _animatorLegs = transform.GetChild(0).GetComponent<Animator>();
+        _animatorTop = GetComponent<Animator>();
+        Debug.Log(_animatorLegs.gameObject.name);
     }
 
     void Update() {
@@ -29,6 +35,17 @@ public class PlayerController : MonoBehaviour {
         var moveHorizontal = Input.GetAxisRaw(prefix + "MoveHorizontal");
         var moveVertical = Input.GetAxisRaw(prefix + "MoveVertical");
         _moveDirection = new Vector2(moveHorizontal, moveVertical);
+        if (_moveDirection.Equals(Vector3.zero)) {
+            Debug.Log("Idle");
+            _animatorLegs.SetBool("isMoving", false);
+            _animatorTop.SetBool("isMoving", false);
+        }
+        else {
+            Debug.Log("Moving");
+            _animatorLegs.SetBool("isMoving", true);
+            _animatorTop.SetBool("isMoving", true);
+        }
+        
 
         if (inputState == InputDetector.EInputState.MouseKeyboard) {
             var mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -38,10 +55,29 @@ public class PlayerController : MonoBehaviour {
             var lookVertical = Input.GetAxisRaw("ControllerLookVertical");
             _lookDirection = new Vector2(lookHorizontal, lookVertical);
         }
+
+        float angle = signedAngleBetween(_moveDirection, _lookDirection);
+        if (angle < angleOfVerticalMovement/2 || angle > 90 + angleOfVerticalMovement/2) {
+            Debug.Log("Vertical Movement");
+            _animatorLegs.SetBool("moveVertical", true);
+        }
+        else {
+            Debug.Log("Horizontal Movement");
+            _animatorLegs.SetBool("moveVertical", false);
+        }
     }
 
     void FixedUpdate() {
         _moveSystem.Move(_moveDirection);
         _moveSystem.Turn(_lookDirection);
+    }
+
+    float signedAngleBetween (Vector3 a, Vector3 b) {
+        float angle = Vector3.Angle(a, b);
+
+        if( Mathf.Sign(angle) == -1)
+            angle = 360 + angle;
+
+        return angle;
     }
 }
