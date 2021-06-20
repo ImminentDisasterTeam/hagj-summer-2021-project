@@ -5,8 +5,12 @@ public class MoveSystem : MonoBehaviour {
     public float deceleration = 15;
     public float speed = 8;
     public float rotationSpeed = 1440;
-
     public float rollSpeed = 16;
+    public float speedWithShield = 3;
+    bool isHoldingShield = false;
+    public void SetIsHoldingShield(bool value) {
+        isHoldingShield = value;
+    }
 
     Rigidbody2D _rb;
     Vector2 _lastLookDirection;
@@ -16,7 +20,11 @@ public class MoveSystem : MonoBehaviour {
         _lastLookDirection = _rb.transform.forward;
     }
     public void Move(Vector2 moveDirection) {
-        _rb.MovePosition(_rb.position + moveDirection.normalized * (speed * Time.fixedDeltaTime));
+        if (isHoldingShield) {
+            _rb.MovePosition(_rb.position + moveDirection.normalized * (speedWithShield * Time.fixedDeltaTime));
+        } else {
+            _rb.MovePosition(_rb.position + moveDirection.normalized * (speed * Time.fixedDeltaTime));
+        }
     }
 
     public void Roll(Vector2 rollDirection) {

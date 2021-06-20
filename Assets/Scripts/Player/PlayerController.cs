@@ -25,6 +25,11 @@ public class PlayerController : MonoBehaviour {
         isRolling = value;
     }
 
+    bool canRoll = true;
+    public void SetCanRoll(bool value) {
+        canRoll = value;
+    }
+
     const string ControllerPrefix = "Controller";
     
     void Start() {
@@ -87,7 +92,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void RollDetector() {
-        if (rollReady == false)
+        if (rollReady == false || !canRoll) 
             return;
         if (Input.GetButtonDown("Dodge")) {
             StartCoroutine(RollCoolDownCoro(rollCoolDown));

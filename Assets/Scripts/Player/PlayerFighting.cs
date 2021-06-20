@@ -13,16 +13,16 @@ public class PlayerFighting : MonoBehaviour
     public void SetCanAttack(bool value) {
         canAttack = value;
     }
+
+
     Animator _animatorLegs;
     Animator _animatorTop;
     void Start()
     {
         _animatorLegs = transform.GetChild(0).GetComponent<Animator>();
         _animatorTop = GetComponent<Animator>();
-        _animatorTop.SetTrigger("attack");
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Time.time - lastClickedTime > maxComboDelay) {
@@ -38,6 +38,13 @@ public class PlayerFighting : MonoBehaviour
         }
         else {
             _animatorTop.ResetTrigger("attack");
+        }
+
+        if (Input.GetButton("Block")) {
+            _animatorTop.SetBool("holdShield", true);
+        }
+        else {
+            _animatorTop.SetBool("holdShield", false);
         }
             
     }
