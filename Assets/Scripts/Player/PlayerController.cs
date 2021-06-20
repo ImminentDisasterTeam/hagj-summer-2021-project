@@ -43,7 +43,10 @@ public class PlayerController : MonoBehaviour {
         var moveHorizontal = Input.GetAxisRaw(prefix + "MoveHorizontal");
         var moveVertical = Input.GetAxisRaw(prefix + "MoveVertical");
         _moveDirection = new Vector2(moveHorizontal, moveVertical);
-        if (_moveDirection.Equals(Vector3.zero) || !CanMove) {
+        if (!CanMove) {
+            _moveDirection = Vector2.zero;
+        }
+        if (_moveDirection.Equals(Vector2.zero)) {
             Debug.Log("Idle");
             _animatorLegs.SetBool("isMoving", false);
             _animatorTop.SetBool("isMoving", false);
@@ -96,9 +99,7 @@ public class PlayerController : MonoBehaviour {
 
 
     void FixedUpdate() {
-        if (CanMove) {
-            _moveSystem.Move(_moveDirection);
-        }
+        _moveSystem.Move(_moveDirection);
         if (!IsRolling) {
             _moveSystem.Turn(_lookDirection);
         }

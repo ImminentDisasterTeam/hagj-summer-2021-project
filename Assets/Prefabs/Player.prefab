@@ -118,6 +118,8 @@ GameObject:
   - component: {fileID: 2329120391567417290}
   - component: {fileID: 2329120391567417291}
   - component: {fileID: 2329120391567417292}
+  - component: {fileID: 370037656}
+  - component: {fileID: 370037663}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -229,7 +231,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &2329120391567417290
 MonoBehaviour:
@@ -243,10 +245,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea2480a9fd49ff9f6f8318e719ba17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 10
-  deceleration: 15
   speed: 8
-  rotationSpeed: 1440
+  rollSpeed: 16
+  speedWithShield: 3
+  isHoldingShield: 0
 --- !u!114 &2329120391567417291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleOfVerticalMovement: 90
+  rollCoolDown: 1
 --- !u!114 &2329120391567417292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,3 +275,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98756a801f004f618c9813d51b4ee8d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!70 &370037656
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2329120391567417286}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0050344467, y: -0.0050348653}
+  m_Size: {x: 1.013952, y: 0.5205558}
+  m_Direction: 1
+--- !u!114 &370037663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2329120391567417286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a1c448b5495f46da8685bf2c9c31c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  shieldAngleWidth: 90
+  shieldStamina: 100
+  blockStaminaRequired: 10
+  comboHitsNumber: 3
+  maxComboDelay: 1.5
+  canAttack: 1

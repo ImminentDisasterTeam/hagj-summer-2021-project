@@ -1,9 +1,14 @@
 using UnityEngine;
+using System;
 
 public class PlayerFighting : MonoBehaviour {
     //health
     [SerializeField] float health = 100;
     float _currentHealth;
+    void SetCurrentHealth(float value) {
+        _currentHealth = value;
+        changeHealth(_currentHealth/health);
+    }
 
     //shield
     [SerializeField] float shieldAngleWidth = 90;
@@ -11,6 +16,10 @@ public class PlayerFighting : MonoBehaviour {
     [SerializeField] float shieldStamina = 100;
     [SerializeField] float blockStaminaRequired = 10;
     float _currentShieldStamina;
+    void SetCurrentShieldStamina(float value) {
+        _currentShieldStamina = value;
+        changeShieldStamina(_currentShieldStamina/shieldStamina);
+    }
 
     //attack
     [SerializeField] int comboHitsNumber = 3;
@@ -18,6 +27,10 @@ public class PlayerFighting : MonoBehaviour {
     int _hitNumber = -1;
     float _lastClickedTime;
     public bool canAttack = true;
+
+    //actions
+    public Action<float> changeHealth;
+    public Action<float> changeShieldStamina;
 
     Animator _animatorLegs;
     Animator _animatorTop;
@@ -50,18 +63,18 @@ public class PlayerFighting : MonoBehaviour {
 
     void GetDamaged(int damage) {
         _animatorTop.SetTrigger("damaged");
-        _currentHealth -= damage;
+        SetCurrentHealth(_currentHealth - damage);
     }
 
     void BlockHit(int damage) {
-        if (shieldStamina > 0) {
+        if (_currentShieldStamina > 0) {
             Debug.Log("BLOCK");
             _animatorTop.SetTrigger("blockHit");
-            _currentHealth -= damage * (100 - percentageOfBlockedDamage) / 100;
-            shieldStamina -= blockStaminaRequired;
+            SetCurrentHealth(_currentHealth - damage * (100 - percentageOfBlockedDamage) / 100);
+            SetCurrentShieldStamina(_currentShieldStamina - blockStaminaRequired);
         } else {
             _animatorTop.SetTrigger("shieldBroken");
-            _currentHealth -= damage;
+            SetCurrentHealth(_currentHealth - damage);
         }
     }
 
