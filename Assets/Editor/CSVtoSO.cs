@@ -24,12 +24,12 @@ public class CSVtoSO
     {
         string[] allLines = File.ReadAllLines(fileaPath);
         Dialogue dialogue = ScriptableObject.CreateInstance<Dialogue>();
-        dialogue.phrases = new List<Phrase>();
+        dialogue.Phrases = new List<Phrase>();
         dialogue.Title = "test";
         foreach (var line in allLines)
         {
             Phrase phrase = new Phrase(line);
-            dialogue.phrases.Add(phrase);
+            dialogue.Phrases.Add(phrase);
         }
 
 
