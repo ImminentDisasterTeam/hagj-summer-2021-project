@@ -20,6 +20,7 @@ public class DialogueWindow : MonoBehaviour
     [SerializeField] Dialogue[] _dialogues;
 
     bool _isTyping;
+    Coroutine _typing;
 
     public void StartDialogue()
     {
@@ -34,35 +35,107 @@ public class DialogueWindow : MonoBehaviour
 
     void EndDialogue()
     {
-        StopAllCoroutines();
+        StopCoroutine(_typing);
         _isTyping = false;
         Debug.Log("end");
     }
 
     void startPhrase()
     {
-        StartCoroutine(TypeText());
+        _typing = StartCoroutine(TypeText());
         _nameField.text = _currentDialogue.Phrases[_phraseNumber].CharacterName;
+        DisplaySprites();
+    }
 
+    void DisplaySprites()
+    {
         switch (_currentDialogue.Phrases[_phraseNumber].SpritePosition)
         {
             case Position.Left:
-                _leftSpritePlaceholder.gameObject.SetActive(true);
-                _leftSpritePlaceholder.sprite = _currentDialogue.Phrases[_phraseNumber].CharaterImage;
+                ShowSprite(ref _leftSpritePlaceholder);
+                if (!_currentDialogue.Phrases[_phraseNumber].hasCompanion)
+                {
+                    HideSprite(ref _rightSpritePlaceholder);
+                }
+                else { DimSprite(ref _rightSpritePlaceholder); }
                 break;
             case Position.Right:
-                _rightSpritePlaceholder.gameObject.SetActive(true);
-                _rightSpritePlaceholder.sprite = _currentDialogue.Phrases[_phraseNumber].CharaterImage;
+                ShowSprite(ref _rightSpritePlaceholder);
+                if (!_currentDialogue.Phrases[_phraseNumber].hasCompanion)
+                {
+                    HideSprite(ref _leftSpritePlaceholder);
+                }
+                else { DimSprite(ref _leftSpritePlaceholder); }
+                break;
+            case Position.None:
+                if (!_currentDialogue.Phrases[_phraseNumber].hasCompanion)
+                {
+                    HideSprite(ref _leftSpritePlaceholder);
+                    HideSprite(ref _rightSpritePlaceholder);
+                }
+                else
+                {
+                    DimSprite(ref _leftSpritePlaceholder);
+                    DimSprite(ref _rightSpritePlaceholder);
+                }
                 break;
             default:
                 break;
         }
-        HighlightSprite();
+
+    }
+    void HighlightSprite()
+    {
+        switch (_currentDialogue.Phrases[_phraseNumber].SpritePosition)
+        {
+            case Position.Left:
+                if (_currentDialogue.Phrases[_phraseNumber].hasCompanion)
+                {
+                    _rightSpritePlaceholder.color = new Color(1f, 1f, 1f, 0.5f);
+                }
+                _leftSpritePlaceholder.color = new Color(1f, 1f, 1f, 1f);
+                break;
+            case Position.Right:
+                if (_currentDialogue.Phrases[_phraseNumber].hasCompanion)
+                {
+                    _leftSpritePlaceholder.color = new Color(1f, 1f, 1f, 0.5f);
+                }
+                _rightSpritePlaceholder.color = new Color(1f, 1f, 1f, 1f);
+                break;
+            case Position.None:
+                if (_rightSpritePlaceholder.IsActive())
+                    _rightSpritePlaceholder.color = new Color(1f, 1f, 1f, 0.5f);
+                if (_leftSpritePlaceholder.IsActive())
+                    _leftSpritePlaceholder.color = new Color(1f, 1f, 1f, 0.5f);
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    void ShowSprite(ref Image image)
+    {
+        if (!image.GetComponent<Animator>().GetBool("isShown"))
+            image.GetComponent<Animator>().SetBool("isShown", true);
+        image.sprite = _currentDialogue.Phrases[_phraseNumber].CharaterImage;
+        image.color = new Color(1f, 1f, 1f, 1f);
+    }
+    void HideSprite(ref Image image)
+    {
+        if (image.GetComponent<Animator>().GetBool("isShown"))
+            image.GetComponent<Animator>().SetBool("isShown", false);
+    }
+    void DimSprite(ref Image image)
+    {
+        if (image.GetComponent<Animator>().GetBool("isShown"))
+            image.color = new Color(0.5f, 0.5f, 0.5f, 1f);
     }
 
     public void Skip()
     {
-        StopAllCoroutines();
+        if (_typing != null)
+            StopCoroutine(_typing);
         _textField.text = _currentDialogue.Phrases[_phraseNumber].Text;
         _isTyping = false;
     }
@@ -81,6 +154,7 @@ public class DialogueWindow : MonoBehaviour
 
     public void Back()
     {
+        Skip();
         if (_phraseNumber > 0)
         {
             _phraseNumber--;
@@ -90,9 +164,22 @@ public class DialogueWindow : MonoBehaviour
     }
     public void HideText()
     {
-        _dialogueWindow.SetActive(false);
+        _dialogueWindow.GetComponent<Animator>().SetBool("isShown", false);
+        HideSprite(ref _leftSpritePlaceholder);
+        HideSprite(ref _rightSpritePlaceholder);
+        if (_typing != null)
+            StopCoroutine(_typing);
         Debug.Log("hide");
 
+    }
+    private void ShowText()
+    {
+        _dialogueWindow.GetComponent<Animator>().SetBool("isShown", true);
+        if (_leftSpritePlaceholder.IsActive())
+            _leftSpritePlaceholder.GetComponent<Animator>().SetBool("isShown", true);
+        if (_rightSpritePlaceholder.IsActive())
+            _rightSpritePlaceholder.GetComponent<Animator>().SetBool("isShown", true);
+        Skip();
     }
     IEnumerator TypeText()
     {
@@ -107,31 +194,6 @@ public class DialogueWindow : MonoBehaviour
         }
         _isTyping = false;
     }
-    void HighlightSprite()
-    {
-        switch (_currentDialogue.Phrases[_phraseNumber].SpritePosition)
-        {
-            case Position.Left:
-                if (_rightSpritePlaceholder != null)
-                    _rightSpritePlaceholder.color = new Color(1f, 1f, 1f, 0.5f);
-                _leftSpritePlaceholder.color = new Color(1f, 1f, 1f, 1f);
-                break;
-            case Position.Right:
-                if (_leftSpritePlaceholder != null)
-                    _leftSpritePlaceholder.color = new Color(1f, 1f, 1f, 0.5f);
-                _rightSpritePlaceholder.color = new Color(1f, 1f, 1f, 1f);
-                break;
-            case Position.None:
-                if (_rightSpritePlaceholder != null)
-                    _rightSpritePlaceholder.color = new Color(1f, 1f, 1f, 0.5f);
-                if (_leftSpritePlaceholder != null)
-                    _leftSpritePlaceholder.color = new Color(1f, 1f, 1f, 0.5f);
-                break;
-            default:
-                break;
-        }
-
-    }
 
     void Start()
     {
@@ -142,8 +204,8 @@ public class DialogueWindow : MonoBehaviour
     void Update()
     {
         if (Input.GetButtonDown("Interact"))
-            if (!_dialogueWindow.activeSelf)
-                _dialogueWindow.SetActive(true);
+            if (!_dialogueWindow.GetComponent<Animator>().GetBool("isShown"))
+                ShowText();
             else if (_isTyping)
                 Skip();
             else

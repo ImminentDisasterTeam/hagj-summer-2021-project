@@ -17,14 +17,17 @@ MonoBehaviour:
   - CharacterName: Narrator
     Text: I narrate the story
     SpritePosition: 0
+    hasCompanion: 0
     CharaterImage: {fileID: 0}
   - CharacterName: Narrator2
     Text: I narrate the story
     SpritePosition: 1
+    hasCompanion: 0
     CharaterImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   - CharacterName: Narrator3
     Text: I narrate the story
-    SpritePosition: 0
+    SpritePosition: 2
+    hasCompanion: 1
     CharaterImage: {fileID: 0}
   Background: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   BackgroundMusic: {fileID: 8300000, guid: ecaa8f1f4b0abaf48b6ea745a8991364, type: 3}

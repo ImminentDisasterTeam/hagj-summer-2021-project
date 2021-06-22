@@ -19,5 +19,6 @@ public class Phrase
     [TextArea]
     public string Text;
     public Position SpritePosition;
+    public bool hasCompanion;
     public Sprite CharaterImage;
 }
