@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+using DialogueSystem;
 
 public class CSVtoSO
 {
@@ -11,10 +12,9 @@ public class CSVtoSO
     [MenuItem("Utilities/Generate Dialogs")]
     public static void GenerateDialogs()
     {
-        var files = Directory.GetFiles(Application.dataPath + csvPath,"*.csv");
+        var files = Directory.GetFiles(Application.dataPath + csvPath, "*.csv");
         foreach (var file in files)
         {
-            Debug.Log(file);
             GenerateDialog(file);
         }
 
@@ -25,13 +25,15 @@ public class CSVtoSO
         string[] allLines = File.ReadAllLines(fileaPath);
         Dialogue dialogue = ScriptableObject.CreateInstance<Dialogue>();
         dialogue.Phrases = new List<Phrase>();
-        dialogue.Title = "test";
+        dialogue.Title = Path.GetFileNameWithoutExtension(fileaPath);
         foreach (var line in allLines)
         {
-            Phrase phrase = new Phrase(line);
-            dialogue.Phrases.Add(phrase);
+            if ((line.Split(Phrase.SplitSymbol)).GetLength(0) == 4)
+            {
+                Phrase phrase = new Phrase(line);
+                dialogue.Phrases.Add(phrase);
+            }
         }
-
 
         AssetDatabase.CreateAsset(dialogue, $"Assets/Dialogs/{dialogue.Title}.asset");
     }

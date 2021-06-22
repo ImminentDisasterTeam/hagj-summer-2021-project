@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c344fe75043ff7469499ca140b0dbe4, type: 3}
-  m_Name: test
+  m_Name: testImport
   m_EditorClassIdentifier: 
   Title: testImport
   Phrases:
@@ -23,11 +23,11 @@ MonoBehaviour:
     Text: I narrate the story too!
     SpritePosition: 1
     HasCompanion: 0
-    CharaterImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    CharaterImage: {fileID: 0}
   - CharacterName: Narrator3
     Text: So do I
     SpritePosition: 2
     HasCompanion: 1
-    CharaterImage: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  Background: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  BackgroundMusic: {fileID: 8300000, guid: ecaa8f1f4b0abaf48b6ea745a8991364, type: 3}
+    CharaterImage: {fileID: 0}
+  Background: {fileID: 0}
+  BackgroundMusic: {fileID: 0}

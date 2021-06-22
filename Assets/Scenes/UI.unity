@@ -454,7 +454,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 417498210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b4ac63e2882ffe48b6fe67eceaff056, type: 3}
+  m_Script: {fileID: 11500000, guid: fe7754e717311f04199733a44f09b4e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogueWindow: {fileID: 2128643387}
@@ -466,7 +466,7 @@ MonoBehaviour:
   _audioSource: {fileID: 1980986780}
   _typeSound: {fileID: 8300000, guid: 3495b4b8ac89ca441a2ff6b780fbc6de, type: 3}
   _dialogues:
-  - {fileID: 11400000, guid: b5a01c9a57f9bfc45b482b4aa12c7ed9, type: 2}
+  - {fileID: 11400000, guid: 5a8013dd510f7f146964308cf5c560df, type: 2}
 --- !u!4 &417498212
 Transform:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+using DialogueSystem;
 
 public static class CustomAssetUtility
 {
