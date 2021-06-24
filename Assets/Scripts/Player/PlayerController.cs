@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class PlayerController : MonoBehaviour {
     InputDetector _inputDetector;
@@ -18,6 +19,8 @@ public class PlayerController : MonoBehaviour {
     public bool CanRoll { set; private get; } = true;
 
     const string ControllerPrefix = "Controller";
+    
+    public Action<float> changeRollCoolDown;
     
     void Start() {
         _inputDetector = GetComponent<InputDetector>();
@@ -93,7 +96,13 @@ public class PlayerController : MonoBehaviour {
 
     IEnumerator RollCoolDownCoro(float rollCoolDown) {
         _rollReady = false;
-        yield return new WaitForSeconds(rollCoolDown);
+        float delta = 0.01f;
+        for (float i = 0; i < rollCoolDown; i += delta)
+        {
+            changeRollCoolDown(i/rollCoolDown);
+            yield return new WaitForSeconds(delta);
+        }
+        changeRollCoolDown(1);
         _rollReady = true;
     }
 

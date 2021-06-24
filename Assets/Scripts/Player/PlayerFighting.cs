@@ -28,6 +28,11 @@ public class PlayerFighting : MonoBehaviour {
     float _lastClickedTime;
     public bool canAttack = true;
 
+    [SerializeField] LayerMask enemyLayers;
+
+    [SerializeField] Vector2 combo1Offset;
+    [SerializeField] float combo1Radius;
+
     //actions
     public Action<float> changeHealth;
     public Action<float> changeShieldStamina;
@@ -97,5 +102,21 @@ public class PlayerFighting : MonoBehaviour {
         } else {
             GetDamaged(10);
         }
+    }
+
+    public void ComboAttack1() {
+        Vector2 attackCentre = transform.TransformPoint(combo1Offset);
+        var enemies = Physics2D.OverlapCircleAll(attackCentre, combo1Radius, enemyLayers);
+        foreach (var enemy in enemies) {
+            enemy.GetComponent<EnemyController>().TakeDamage();
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        // Draw a yellow sphere
+        Gizmos.color = Color.yellow;
+        Vector2 attackCentre = transform.TransformPoint(combo1Offset);
+        Gizmos.DrawSphere(attackCentre, combo1Radius);
     }
 }

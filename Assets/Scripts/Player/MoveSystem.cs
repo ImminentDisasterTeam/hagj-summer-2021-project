@@ -7,7 +7,7 @@ public class MoveSystem : MonoBehaviour {
     public bool isHoldingShield;
 
     Rigidbody2D _rb;
-    Vector2 _lastLookDirection;
+    public Vector2 _lastLookDirection;
 
     void Start() {
         _rb = GetComponent<Rigidbody2D>();
