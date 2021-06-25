@@ -29,8 +29,8 @@ MonoBehaviour:
       kiss your feet. Kings, rulers, and princes will bow down before you. They shall
       bring you tribute from the mountains and the plain.
     MainSprite: 2
-    LeftCharacter: {fileID: 0}
-    RightCharacter: {fileID: 0}
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 21300000, guid: d7ad3e1a08953cd47be5cd7f83796d9f, type: 3}
   - CharacterName: Gilgamesh
     Text: If I take you in marriage, what gifts can I give in return? What ointments
       and clothing for your body? I would gladly give you bread and all sorts of
@@ -38,8 +38,8 @@ MonoBehaviour:
       pour out barley to stuff your granary. But as for making you my wife - that
       I will not.
     MainSprite: 1
-    LeftCharacter: {fileID: 0}
-    RightCharacter: {fileID: 0}
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 21300000, guid: d7ad3e1a08953cd47be5cd7f83796d9f, type: 3}
   - CharacterName: Gilgamesh
     Text: Your lovers have found you like a brazier which smoulders in the cold,
       a backdoor which keeps out neither squall of wind nor storm, pitch that blackens
@@ -47,8 +47,8 @@ MonoBehaviour:
       from the enemy, a sandal that trips the wearer. Which of your lovers did you
       ever love for ever? What shepherd of yours has pleased you for all time?
     MainSprite: 1
-    LeftCharacter: {fileID: 0}
-    RightCharacter: {fileID: 0}
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 21300000, guid: d7ad3e1a08953cd47be5cd7f83796d9f, type: 3}
   - CharacterName: Gilgamesh
     Text: 'You have loved the lion tremendous in strength: seven pits you dug for
       him. You have loved the stallion magnificent in battle, and for him you decreed
@@ -57,25 +57,25 @@ MonoBehaviour:
       kids for your sake. You struck and turned him into a wolf, now his own herd-boys
       chase him away.'
     MainSprite: 1
-    LeftCharacter: {fileID: 0}
-    RightCharacter: {fileID: 0}
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 21300000, guid: d7ad3e1a08953cd47be5cd7f83796d9f, type: 3}
   - CharacterName: Gilgamesh
     Text: And if you and I should be lovers, should not I be served in the same fashion
       as all these others whom you loved once?
     MainSprite: 1
-    LeftCharacter: {fileID: 0}
-    RightCharacter: {fileID: 0}
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 21300000, guid: d7ad3e1a08953cd47be5cd7f83796d9f, type: 3}
   - CharacterName: Ishtar
     Text: Gilgamesh has heaped insults on me, he has told over all my abominable
       behaviour, my foul and hideous acts.
     MainSprite: 2
     LeftCharacter: {fileID: 0}
-    RightCharacter: {fileID: 0}
+    RightCharacter: {fileID: 21300000, guid: d7ad3e1a08953cd47be5cd7f83796d9f, type: 3}
   - CharacterName: Ishtar
-    Text: I will ask father to give me the Bull of Heaven to destroy Gilgamesh. To
-      fill Gilgamesh with arrogance to his destruction. ,
-    MainSprite: 0
+    Text: 'I will ask father to give me the Bull of Heaven to destroy Gilgamesh.
+      To fill Gilgamesh with arrogance to his destruction. '
+    MainSprite: 2
     LeftCharacter: {fileID: 0}
-    RightCharacter: {fileID: 0}
-  Background: {fileID: 0}
-  BackgroundMusic: {fileID: 0}
+    RightCharacter: {fileID: 21300000, guid: d7ad3e1a08953cd47be5cd7f83796d9f, type: 3}
+  Background: {fileID: 21300000, guid: c648ed63b611ed6468dbcb5ffb413d67, type: 3}
+  BackgroundMusic: {fileID: 8300000, guid: 8381c5829f3f3f143a915044b9e2bbe8, type: 3}

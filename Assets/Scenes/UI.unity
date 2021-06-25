@@ -466,7 +466,7 @@ MonoBehaviour:
   _audioSource: {fileID: 1980986780}
   _typeSound: {fileID: 8300000, guid: 3495b4b8ac89ca441a2ff6b780fbc6de, type: 3}
   _dialogues:
-  - {fileID: 11400000, guid: 5a8013dd510f7f146964308cf5c560df, type: 2}
+  - {fileID: 11400000, guid: f8b101f1852962446921c2cf17a7de70, type: 2}
 --- !u!4 &417498212
 Transform:
   m_ObjectHideFlags: 0

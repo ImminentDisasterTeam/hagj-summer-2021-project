@@ -25,6 +25,8 @@ namespace DialogueSystem
         Coroutine _typing;
         Coroutine _swapLeft;
         Coroutine _swapRight;
+        Coroutine _hideLeft;
+        Coroutine _hideRight;
 
         public void StartDialogue()
         {
@@ -49,10 +51,7 @@ namespace DialogueSystem
 
         void startPhrase()
         {
-            if (_swapLeft != null)
-                StopCoroutine(_swapLeft);
-            if (_swapRight != null)
-                StopCoroutine(_swapRight);
+            StopAllCoroutines();
             _typing = StartCoroutine(TypeText());
             _nameField.text = _currentDialogue.Phrases[_phraseNumber].CharacterName;
             DisplaySprites();
@@ -63,22 +62,22 @@ namespace DialogueSystem
             switch (_currentDialogue.Phrases[_phraseNumber].MainSprite)
             {
                 case Position.Left:
-                    DisplaySprite(ref _leftSpritePlaceholder, ref _rightSpritePlaceholder, _currentDialogue.Phrases[_phraseNumber].LeftCharacter, _currentDialogue.Phrases[_phraseNumber].RightCharacter, _swapLeft);
+                    DisplaySprite(ref _leftSpritePlaceholder, ref _rightSpritePlaceholder, _currentDialogue.Phrases[_phraseNumber].LeftCharacter, _currentDialogue.Phrases[_phraseNumber].RightCharacter, _swapLeft, _hideLeft);
                     break;
                 case Position.Right:
-                    DisplaySprite(ref _rightSpritePlaceholder, ref _leftSpritePlaceholder, _currentDialogue.Phrases[_phraseNumber].RightCharacter, _currentDialogue.Phrases[_phraseNumber].LeftCharacter, _swapRight);
+                    DisplaySprite(ref _rightSpritePlaceholder, ref _leftSpritePlaceholder, _currentDialogue.Phrases[_phraseNumber].RightCharacter, _currentDialogue.Phrases[_phraseNumber].LeftCharacter, _swapRight, _hideRight);
                     break;
                 case Position.None:
-                    HideSprite(ref _leftSpritePlaceholder);
-                    HideSprite(ref _rightSpritePlaceholder);
+                    _hideLeft = StartCoroutine(HideSprite(_leftSpritePlaceholder));
+                    _hideRight = StartCoroutine(HideSprite(_rightSpritePlaceholder));
                     break;
                 default:
                     break;
             }
 
         }
-        void DisplaySprite(ref Image main, ref Image support, Sprite mainSprite, Sprite supportSprite, Coroutine swapCoroutine)
-        {            
+        void DisplaySprite(ref Image main, ref Image support, Sprite mainSprite, Sprite supportSprite, Coroutine swapCoroutine, Coroutine hideCoroutine)
+        {
             if (main.sprite != null && mainSprite.name == main.sprite.name)
                 HighlightSprite(ref main);
             else
@@ -86,8 +85,12 @@ namespace DialogueSystem
 
             if (supportSprite != null)
             {
-                ShowSprite(ref support, supportSprite, swapCoroutine);                
+                ShowSprite(ref support, supportSprite, swapCoroutine);
                 DimSprite(ref support);
+            }
+            else
+            {
+                hideCoroutine = StartCoroutine(HideSprite(support));
             }
         }
 
@@ -108,13 +111,17 @@ namespace DialogueSystem
                 image.sprite = sprite;
                 image.color = new Color(1f, 1f, 1f);
             }
-            else swapCoroutine = StartCoroutine(SwapSprite(image, sprite));
+            else if (image.sprite != null && sprite.name != image.sprite.name)
+            {
+                swapCoroutine = StartCoroutine(SwapSprite(image, sprite));
+            }
         }
-        void HideSprite(ref Image image)
+        IEnumerator HideSprite(Image image)
         {
             if (image.GetComponent<Animator>().GetBool("isShown"))
             {
                 image.GetComponent<Animator>().SetBool("isShown", false);
+                yield return new WaitWhile(() => image.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsTag("Shown"));
                 image.sprite = null;
             }
         }
@@ -167,8 +174,8 @@ namespace DialogueSystem
         public void HideText()
         {
             _dialogueWindow.GetComponent<Animator>().SetBool("isShown", false);
-            HideSprite(ref _leftSpritePlaceholder);
-            HideSprite(ref _rightSpritePlaceholder);
+            _hideLeft = StartCoroutine(HideSprite(_leftSpritePlaceholder));
+            _hideRight = StartCoroutine(HideSprite(_rightSpritePlaceholder));
             if (_typing != null)
                 StopCoroutine(_typing);
             Debug.Log("hide");
