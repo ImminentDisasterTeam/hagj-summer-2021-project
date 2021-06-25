@@ -9,21 +9,20 @@ namespace DialogueSystem
     [System.Serializable]
     public class Phrase
     {
-        public static char SplitSymbol = ';';
-        public Phrase(string data)
+        public Phrase(string[] data, Sprite[] sprites)
         {
-            var splitData = data.Split(SplitSymbol);
-            CharacterName = splitData[0];
-            Text = splitData[1];
-            HasCompanion = bool.Parse(splitData[3]);
-            System.Enum.TryParse(splitData[2], out Position position);
-            SpritePosition = position;
+            CharacterName = data[0];
+            Text = data[1];
+            System.Enum.TryParse(data[2], out Position position);
+            MainSprite = position;
+            LeftCharacter = sprites[0];
+            RightCharacter = sprites[1];
         }
         public string CharacterName;
         [TextArea]
         public string Text;
-        public Position SpritePosition;
-        public bool HasCompanion;
-        public Sprite CharaterImage;
+        public Position MainSprite;
+        public Sprite LeftCharacter;
+        public Sprite RightCharacter;
     }
 }

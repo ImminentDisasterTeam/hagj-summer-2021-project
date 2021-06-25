@@ -16,18 +16,18 @@ MonoBehaviour:
   Phrases:
   - CharacterName: Narrator
     Text: I narrate the story
-    SpritePosition: 0
-    HasCompanion: 0
-    CharaterImage: {fileID: 0}
+    MainSprite: 1
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 21300000, guid: d660fb4fecc7d6c409bb3cb1c1969ad8, type: 3}
   - CharacterName: Narrator2
     Text: I narrate the story too!
-    SpritePosition: 1
-    HasCompanion: 0
-    CharaterImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    MainSprite: 1
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 21300000, guid: d7ad3e1a08953cd47be5cd7f83796d9f, type: 3}
   - CharacterName: Narrator3
     Text: So do I
-    SpritePosition: 2
-    HasCompanion: 1
-    CharaterImage: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+    MainSprite: 1
+    LeftCharacter: {fileID: 21300000, guid: d660fb4fecc7d6c409bb3cb1c1969ad8, type: 3}
+    RightCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
   Background: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   BackgroundMusic: {fileID: 8300000, guid: ecaa8f1f4b0abaf48b6ea745a8991364, type: 3}
