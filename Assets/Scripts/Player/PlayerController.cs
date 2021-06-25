@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public float SignedAngleWithLookDirection(Vector2 a) {
-        var angle = Vector2.SignedAngle(a, _lookDirection);
+        var angle = Vector2.Angle(a, _lookDirection);
 
         if(Mathf.Sign(angle) == -1) {
             angle = 360 + angle;
