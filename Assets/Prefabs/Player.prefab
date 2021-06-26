@@ -127,7 +127,7 @@ Animator:
   m_GameObject: {fileID: 1109110943}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d71ff1814acb14441bafec1d83e0c3b7, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -512,5 +512,9 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
-  combo1Offset: {x: 0.2, y: 0.4}
-  combo1Radius: 0.4
+  combo1Offset: {x: 0.5, y: 1}
+  combo1Radius: 1.2
+  combo2Offset: {x: 0.6, y: 1.1}
+  combo2Radius: 1.2
+  combo3Offset: {x: 0.4, y: 1.2}
+  combo3Radius: 1
