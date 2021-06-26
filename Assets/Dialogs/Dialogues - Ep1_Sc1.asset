@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c344fe75043ff7469499ca140b0dbe4, type: 3}
+  m_Name: Dialogues - Ep1_Sc1
+  m_EditorClassIdentifier: 
+  Title: Dialogues - Ep1_Sc1
+  Phrases:
+  - CharacterName: Narrator
+    Text: Gilgamesh was the man to whom all things were known. He was the king who
+      knew the countries of the world. He was wise, he saw mysteries and knew secret
+      things. When the gods created Gilgamesh they gave him a perfect body. Shamash
+      the glorious sun endowed him with beauty, Adad the god of the storm endowed
+      him with courage, the great gods made his beauty perfect, surpassing all others.
+    MainSprite: 0
+    LeftCharacter: {fileID: 0}
+    RightCharacter: {fileID: 0}
+  - CharacterName: Narrator
+    Text: In Uruk he built walls, and the temple of blessed Eanna for the god of
+      the firmament Anu, and for Ishtar the goddess of love. The outer wall where
+      the cornice runs, it shines with the brilliance of copper, it has no equal.
+    MainSprite: 0
+    LeftCharacter: {fileID: 0}
+    RightCharacter: {fileID: 0}
+  - CharacterName: Narrator
+    Text: But the people of Uruk muttered with displeasure in their homes ...
+    MainSprite: 0
+    LeftCharacter: {fileID: 0}
+    RightCharacter: {fileID: 0}
+  Background: {fileID: 0}
+  BackgroundMusic: {fileID: 8300000, guid: 8381c5829f3f3f143a915044b9e2bbe8, type: 3}
+  Episode: 1

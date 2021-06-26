@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c344fe75043ff7469499ca140b0dbe4, type: 3}
+  m_Name: Dialogues - Ep4_Sc2
+  m_EditorClassIdentifier: 
+  Title: Dialogues - Ep4_Sc2
+  Phrases:
+  - CharacterName: Narrator
+    Text: This day on which Enkidu dreamed came to an end and be lay stricken with
+      sickness. One whole day he lay on his bed and his suffering increased. A second
+      day he lay on his bed and Gilgamesh watched over him but the sickness increased.
+    MainSprite: 0
+    LeftCharacter: {fileID: 0}
+    RightCharacter: {fileID: 0}
+  - CharacterName: Narrator
+    Text: A third day he lay on his bed, he called out to Gilgamesh, rousing him
+      up. Now he was weak and his eyes were blind with weeping. Ten days he lay and
+      his suffering increased, eleven and twelve days he lay on his bed of pain.
+      And Gilgamesh wept over Enkidu.
+    MainSprite: 0
+    LeftCharacter: {fileID: 0}
+    RightCharacter: {fileID: 0}
+  - CharacterName: Gilgamesh
+    Text: Hear me, great ones of Uruk, I weep for Enkidu, my friend, bitterly moaning
+      like a woman mourning I weep for my brother. O Enkidu, my brother, you were
+      the axe at my side, my hand's strength. An evil Fate has robbed me. All the
+      wild things of the plain and pastures that nourished you weep for you. Let
+      the great ones of strong-walled Uruk weep for you.
+    MainSprite: 2
+    LeftCharacter: {fileID: 0}
+    RightCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+  - CharacterName: Gilgamesh
+    Text: Enkidu, young brother. Hark, there is an echo through all the country like
+      a mother mourning. The river along whose banks we used to walk, weeps for you.
+      The mountain we climbed where we slew the Watchman, weeps for you. The warriors
+      of strong-walled Uruk where the Bull of Heaven was killed, weep for you. What
+      is this sleep which holds you now? You are lost in the dark and cannot hear
+      me.
+    MainSprite: 2
+    LeftCharacter: {fileID: 0}
+    RightCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+  - CharacterName: Narrator
+    Text: Gilgamesh touched Enkidu heart but it did not beat, nor did he lift his
+      eyes again.  So Gilgamesh laid a veil, as one veils the bride, over his friend.
+      The next day, in the first light, Gilgamesh lamented. Seven days and seven
+      nights he wept for Enkidu, until the worm fastened on him. Only then he gave
+      him up to the earth, for the Anunnaki, the judges, had seized him.
+    MainSprite: 0
+    LeftCharacter: {fileID: 0}
+    RightCharacter: {fileID: 0}
+  - CharacterName: Narrator
+    Text: Then Gilgamesh issued a proclamation through the land, he summoned all
+      and commanded them to make a statue of his friend. The statue was fashioned
+      with a great weight of lapis lazuli for the breast and of gold for the body.
+      Gilgamesh set out a table of hard-wood, and on it a bowl of carnelian filled
+      with honey, and a bowl of lapis lazuli filled with butter. These he exposed 
+      and offered to the Sun and weeping he went away.
+    MainSprite: 0
+    LeftCharacter: {fileID: 0}
+    RightCharacter: {fileID: 0}
+  Background: {fileID: 0}
+  BackgroundMusic: {fileID: 8300000, guid: f2c8c7a516726ab46be041c4ced0b44f, type: 3}
+  Episode: 4

@@ -1,0 +1,9 @@
+Background	Music			
+None	intensesad			
+Name	Text	Position (None/Left/Right)	LeftSprite	RightSprite
+Men of Uruk	Gilgamesh has gone into the marriage-house and shut out the people. He does strange things in Uruk, the city of great streets. At the roll of the drum work begins for the men, and work for the women. 	None	Enkidu	None
+Men of Uruk	Gilgamesh the king is about to celebrate marriage with the Queen of Love, and he still demands to be first with the bride, the king to be first and the husband to follow, for that was ordained by the gods from his birth, from the time the umbilical cord was cut. But now the drums roll for the choice of the bride and the city groans.	None	Enkidu	None
+Enkidu	Gilgamesh who lords it over the people, I want to challenge him boldly. I have come to change the old order, for I am the strongest here.	Left	Enkidu	None
+Men of Uruk	He is bigger of bone...This is the one who was reared on the milk of wild beasts... His is the greatest strength... Now Gilgamesh has met his match. This great-one, this hero whose beauty is like a god, he is a match even for Gilgamesh!	None	Enkidu	None
+Gilgamesh	Who are you and why are you stopping me from going to bridal bed?	Right	Enkidu	Gilgamesh
+Enkidu	I am the strongest here, I have come to change the old order, I am he who was born in the hills, I am he who is strongest of all!	Left	Enkidu	Gilgamesh

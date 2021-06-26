@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c344fe75043ff7469499ca140b0dbe4, type: 3}
+  m_Name: Dialogues - Ep1_Sc3
+  m_EditorClassIdentifier: 
+  Title: Dialogues - Ep1_Sc3
+  Phrases:
+  - CharacterName: Gilgamesh
+    Text: Mother, last night I had a dream. I was full of joy and I walked through
+      the night under the stars of the firmament, and one, a meteor of the stuff
+      of Anu, fell down from heaven. I tried to lift it but it proved too heavy.
+      And to me its attraction was like the love of woman. People of Uruk helped
+      me, I braced my forehead and I raised it with thongs and brought it to you,
+      and you yourself pronounced it my brother.
+    MainSprite: 1
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 0}
+  - CharacterName: Ninsun
+    Text: This star of heaven which descended like a meteor from the sky is the strong
+      comrade, the one who brings help to his friend in his need. He is the strongest
+      of wild creatures, the stuff of Anu. He was born in the grass-lands and the
+      wild hills reared him. When you see him you will be glad. You will love him
+      as a woman and he will never forsake you. This is the meaning of the dream.
+    MainSprite: 0
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 0}
+  - CharacterName: Trapper
+    Text: Gilgamesh king in Uruk! Please help me!
+    MainSprite: 0
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 0}
+  - CharacterName: Trapper
+    Text: A man unlike any other is roaming now in the pastures. He is as strong
+      as a star from heaven and I am afraid to approach him. He helps the wild game
+      to escape. He fills in my pits and pulls up my traps.
+    MainSprite: 0
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 0}
+  - CharacterName: Gilgamesh
+    Text: Trapper, go back, take with you a harlot Shamhat, a child of pleasure.
+      At the drinking hole she will strip, and when, he sees her beckoning he will
+      embrace her and the game of the wilderness will surely reject him.
+    MainSprite: 1
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 0}
+  - CharacterName: Gilgamesh
+    Text: A friend, a counsellor has come to me from Enlil the god of wind, and now
+      I shall befriend and counsel him. I will wait for him to come to me in Uruk.
+    MainSprite: 1
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 0}
+  Background: {fileID: 0}
+  BackgroundMusic: {fileID: 8300000, guid: f662a5d3bfedb0244a3a6841747a1638, type: 3}
+  Episode: 1

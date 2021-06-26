@@ -16,22 +16,22 @@ public class SoundManager : MonoBehaviour
     }
     private void ApplySliderVolumeChange(string soundType, Slider slider)
     {
-        float masterVolume = PlayerPrefs.GetFloat("master_volume");
         switch (soundType)
         {
             case "music_volume":
-                _musicSource.volume = masterVolume * slider.value;
+                _musicSource.volume = _masterVolume * slider.value;
                 break;
             case "sfx_volume":
-                _sfxSource.volume = masterVolume * slider.value;
+                _sfxSource.volume = _masterVolume * slider.value;
                 break;
             case "master_volume":
-                _musicSource.volume = masterVolume * slider.value;
-                _sfxSource.volume = masterVolume * slider.value;
+                _musicSource.volume = PlayerPrefs.GetFloat("music_volume") * slider.value;
+                _sfxSource.volume = PlayerPrefs.GetFloat("sfx_volume") * slider.value;
                 break;
             default:
                 break;
         }
+        Debug.Log(PlayerPrefs.GetFloat("master_volume"));
     }
 
     public void PlaySound(AudioClip clip)
@@ -46,5 +46,12 @@ public class SoundManager : MonoBehaviour
         Debug.Log(_musicSource.volume);
         _musicSource.clip = clip;
         _musicSource.Play();
+    }
+
+    private void Start()
+    {
+        _masterVolume = PlayerPrefs.GetFloat("master_volume");
+        _musicSource.volume = PlayerPrefs.GetFloat("music_volume") * _masterVolume;
+        _sfxSource.volume = PlayerPrefs.GetFloat("sfx_volume") * _masterVolume;
     }
 }

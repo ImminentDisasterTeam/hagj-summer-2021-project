@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c344fe75043ff7469499ca140b0dbe4, type: 3}
+  m_Name: Dialogues - Ep1_Sc2
+  m_EditorClassIdentifier: 
+  Title: Dialogues - Ep1_Sc2
+  Phrases:
+  - CharacterName: Men of Uruk
+    Text: Gilgamesh sounds the tocsin for his amusement, his arrogance has no bounds
+      by day or night. No son is left with his father, for Gilgamesh takes them all,
+      even the children.
+    MainSprite: 0
+    LeftCharacter: {fileID: 0}
+    RightCharacter: {fileID: 0}
+  - CharacterName: Men of Uruk
+    Text: Yet the king should be a shepherd to his people. His lust leaves no virgin
+      to her lover, neither the warrior's daughter nor the wife of the noble. Yet
+      this is the shepherd of the city, wise, comely, and resolute.
+    MainSprite: 0
+    LeftCharacter: {fileID: 0}
+    RightCharacter: {fileID: 0}
+  - CharacterName: Narrator
+    Text: The gods heard their lament, the gods of heaven asked Aruru, the goddess
+      of creation, to create Gilgamesh's equal, so that he would be as like him as
+      his own reflection, his second self. So the goddess conceived an image in her
+      mind, and it was of the stuff of Anu of the firmament. She dipped her hands
+      in water and pinched off clay, she let it fall in the wilderness, and noble
+      Enkidu was created.
+    MainSprite: 0
+    LeftCharacter: {fileID: 0}
+    RightCharacter: {fileID: 0}
+  Background: {fileID: 0}
+  BackgroundMusic: {fileID: 8300000, guid: 7e05299d3023223498a4de5db4b0871d, type: 3}
+  Episode: 1

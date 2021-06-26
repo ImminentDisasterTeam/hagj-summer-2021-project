@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c344fe75043ff7469499ca140b0dbe4, type: 3}
+  m_Name: Dialogues - Ep2_Sc3
+  m_EditorClassIdentifier: 
+  Title: Dialogues - Ep2_Sc3
+  Phrases:
+  - CharacterName: Enkidu
+    Text: I know the place where Humbaba lives and the paths where he walks. But
+      do not go down into the forest. When I opened the gate my hand lost its strength.
+    MainSprite: 2
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 21300000, guid: d660fb4fecc7d6c409bb3cb1c1969ad8, type: 3}
+  - CharacterName: Gilgamesh
+    Text: Dear friend, do not speak like a coward. Have we got the better of so many
+      dangers and travelled so far, to turn back at last? You, who are tried in wars
+      and battles, hold dose to me now and you will feel no fear of death. Keep beside
+      me and your weakness will pass, the trembling will leave your hand.
+    MainSprite: 1
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 21300000, guid: d660fb4fecc7d6c409bb3cb1c1969ad8, type: 3}
+  - CharacterName: Gilgamesh
+    Text: Would my friend rather stay behind? No, we will, go down together into
+      the heart of the forest. Let your courage be roused by the battle to come.
+      Forget death and follow me. When two go together each will protect himself
+      and shield his companion, and if they fall they leave an enduring name.
+    MainSprite: 1
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 21300000, guid: d660fb4fecc7d6c409bb3cb1c1969ad8, type: 3}
+  - CharacterName: Gilgamesh
+    Text: If your heart is fearful throw away fear. If there is terror in it throw
+      away terror. Take your axe in your hand and attack. He who leaves the fight
+      unfinished is not at peace.
+    MainSprite: 1
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 21300000, guid: d660fb4fecc7d6c409bb3cb1c1969ad8, type: 3}
+  Background: {fileID: 0}
+  BackgroundMusic: {fileID: 8300000, guid: 3ab7dd9f45e3f5d439c9636602c7ec3b, type: 3}
+  Episode: 2

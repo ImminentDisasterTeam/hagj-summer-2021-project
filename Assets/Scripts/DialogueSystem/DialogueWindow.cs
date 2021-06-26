@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 namespace DialogueSystem
 {
     public class DialogueWindow : MonoBehaviour
     {
-        private int _sceneNumber = 0;
+        private int _dialogueSceneNumber = 0;
         private int _phraseNumber = 0;
         private float _waitLetter = 0.1f;
         private Dialogue _currentDialogue;
         private Animator _windowAnimator;
         private Animator _leftCharacterAnimator;
         private Animator _rightCharacterAnimator;
+        public Action NextScene;
         [SerializeField] SoundManager _soundManager;
         [SerializeField] GameObject _dialogueWindow;
         [SerializeField] Text _textField;
@@ -31,7 +33,7 @@ namespace DialogueSystem
         {
             _rightSpritePlaceholder.sprite = null;
             _leftSpritePlaceholder.sprite = null;
-            _sceneNumber = 0; //get from player prefs
+            _dialogueSceneNumber = PlayerPrefs.GetInt("dialogue");
             _phraseNumber = 0;
             _dialogueWindow.SetActive(true);
             _backgroundArea.GetComponent<Image>().sprite = _currentDialogue.Background;
@@ -43,8 +45,9 @@ namespace DialogueSystem
         {
             StopCoroutine(_typing);
             _isTyping = false;
-            Debug.Log("end");
-            //TODO: fadeout
+
+            NextScene();
+            //todo:fadeout
         }
         void startPhrase()
         {
@@ -151,21 +154,20 @@ namespace DialogueSystem
         }
         void ShowText()
         {
-            _dialogueWindow.GetComponent<Animator>().SetBool("isShown", true);
-            if (_leftSpritePlaceholder.IsActive())
+            _windowAnimator.SetBool("isShown", true);
+            if (_leftSpritePlaceholder.sprite != null)
                 _leftCharacterAnimator.SetBool("isShown", true);
-            if (_rightSpritePlaceholder.IsActive())
+            if (_rightSpritePlaceholder != null)
                 _rightCharacterAnimator.SetBool("isShown", true);
             Skip();
         }
         public void HideText()
         {
             _dialogueWindow.GetComponent<Animator>().SetBool("isShown", false);
-            StartCoroutine(ChangeSprite(_leftSpritePlaceholder));
-            StartCoroutine(ChangeSprite(_rightSpritePlaceholder));
+            _leftCharacterAnimator.SetBool("isShown", false);
+            _rightCharacterAnimator.SetBool("isShown", false);
             if (_typing != null)
                 StopCoroutine(_typing);
-
         }
         public void Back()
         {
@@ -203,11 +205,11 @@ namespace DialogueSystem
 
         void Start()
         {
-            _currentDialogue = _dialogues[_sceneNumber];
+            _currentDialogue = _dialogues[_dialogueSceneNumber];
             _windowAnimator = _dialogueWindow.GetComponent<Animator>();
             _leftCharacterAnimator = _leftSpritePlaceholder.GetComponent<Animator>();
             _rightCharacterAnimator = _rightSpritePlaceholder.GetComponent<Animator>();
-            StartDialogue();            
+            StartDialogue();
         }
 
         void Update()

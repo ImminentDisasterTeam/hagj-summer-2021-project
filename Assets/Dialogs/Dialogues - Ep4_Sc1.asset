@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c344fe75043ff7469499ca140b0dbe4, type: 3}
+  m_Name: Dialogues - Ep4_Sc1
+  m_EditorClassIdentifier: 
+  Title: Dialogues - Ep4_Sc1
+  Phrases:
+  - CharacterName: Enkidu
+    Text: 'O my brother, such a dream I had last night. Anu, Enlil and heavenly Shamash
+      took counsel together, and Anu said to Enlil, "Because they have killed the
+      Bull of Heaven, and because they have killed Humbaba  one of the two must,
+      die." '
+    MainSprite: 1
+    LeftCharacter: {fileID: 21300000, guid: d660fb4fecc7d6c409bb3cb1c1969ad8, type: 3}
+    RightCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+  - CharacterName: Enkidu
+    Text: Then glorious Shamash answered the hero Enlil, "It was by your command
+      they killed the Bull of Heaven, and killed Humbaba, and must Enkidu die although
+      innocent?" Enlil flung round in rage at glorious Shamash, "You dare to say
+      this, you who went about with them every day like one of themselves!"
+    MainSprite: 1
+    LeftCharacter: {fileID: 21300000, guid: d660fb4fecc7d6c409bb3cb1c1969ad8, type: 3}
+    RightCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+  - CharacterName: Enkidu
+    Text: O my brother, so dear as you are to me, brother, yet they will take me
+      from you. I must sit down on the threshold of the dead and never again will
+      I see my dear brother with my eyes.
+    MainSprite: 1
+    LeftCharacter: {fileID: 21300000, guid: d660fb4fecc7d6c409bb3cb1c1969ad8, type: 3}
+    RightCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+  - CharacterName: Gilgamesh
+    Text: Who is there in strong-walled Uruk who has wisdom like this? Strange things
+      have been spoken, why does your heart speak strangely? The dream was marvellous
+      but the terror was great. We must treasure the dream whatever the terror. For
+      the dream has shown that misery comes at last to the healthy man, the end of
+      life is sorrow. Now I will pray to the great gods, for my friend had an ominous
+      dream.
+    MainSprite: 2
+    LeftCharacter: {fileID: 21300000, guid: d660fb4fecc7d6c409bb3cb1c1969ad8, type: 3}
+    RightCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+  - CharacterName: Enkidu
+    Text: My friend, the great goddess cursed me and I must die in shame. I shall
+      not die like a man fallen in battle. I scared to fall, but happy is the man
+      who falls in the battle, for I must die in shame.
+    MainSprite: 1
+    LeftCharacter: {fileID: 21300000, guid: d660fb4fecc7d6c409bb3cb1c1969ad8, type: 3}
+    RightCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+  Background: {fileID: 0}
+  BackgroundMusic: {fileID: 8300000, guid: 84496596832c27c4fad7004cb402832e, type: 3}
+  Episode: 4

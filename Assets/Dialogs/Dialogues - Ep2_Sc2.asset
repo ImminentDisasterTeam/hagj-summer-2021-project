@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c344fe75043ff7469499ca140b0dbe4, type: 3}
+  m_Name: Dialogues - Ep2_Sc2
+  m_EditorClassIdentifier: 
+  Title: Dialogues - Ep2_Sc2
+  Phrases:
+  - CharacterName: Gilgamesh
+    Text: My friend, why do you sigh so bitterly?
+    MainSprite: 1
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 21300000, guid: d660fb4fecc7d6c409bb3cb1c1969ad8, type: 3}
+  - CharacterName: Enkidu
+    Text: I am weak, my arms have lost their strength, the cry of sorrow sticks in
+      my throat, I am oppressed by idleness.
+    MainSprite: 2
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 21300000, guid: d660fb4fecc7d6c409bb3cb1c1969ad8, type: 3}
+  - CharacterName: Gilgamesh
+    Text: Let's go to the country where the cedar is felled. I will set up my name
+      in the place where the names of famous men are written, and where no man's
+      name is written yet I will wise a monument to the gods. We will go to the forest
+      and destroy the evil that is in the land. For in the forest lives Humbaba,
+      a ferocious giant.
+    MainSprite: 1
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 21300000, guid: d660fb4fecc7d6c409bb3cb1c1969ad8, type: 3}
+  - CharacterName: Enkidu
+    Text: 'When I went with the wild beasts ranging through the wilderness I discovered
+      the huge forest. Enlil has appointed Humbaba to guard it and armed him with
+      sevenfold terrors. When he roars it is like the torrent of the storm, his breath
+      is like fire, and his jaws are death itself. '
+    MainSprite: 2
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 21300000, guid: d660fb4fecc7d6c409bb3cb1c1969ad8, type: 3}
+  - CharacterName: Enkidu
+    Text: 'What man would willingly walk into that country and explore its depths?
+      I tell you, weakness overpowers whoever goes near it: it is not an equal struggle
+      when one fights with Humbaba. He is a great warrior, a battering-ram.'
+    MainSprite: 2
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 21300000, guid: d660fb4fecc7d6c409bb3cb1c1969ad8, type: 3}
+  - CharacterName: Gilgamesh
+    Text: Where is the man who can clamber to heaven? Only the gods live for ever
+      with glorious Shamash, but as for us men, our days are numbered, our occupations
+      are a breath of wind. How is this, already you are afraid! I will go first
+      although I am your lord. Then if I fall I leave behind me a name that endures.
+      Men will say of me, "Gilgamesh has fallen in fight with ferocious Humbaba"!
+    MainSprite: 1
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 21300000, guid: d660fb4fecc7d6c409bb3cb1c1969ad8, type: 3}
+  - CharacterName: Enkidu
+    Text: O my lord, if you will enter that country, I will follow you!
+    MainSprite: 2
+    LeftCharacter: {fileID: 21300000, guid: c81b86a089d10054c8f33568e32c702c, type: 3}
+    RightCharacter: {fileID: 21300000, guid: d660fb4fecc7d6c409bb3cb1c1969ad8, type: 3}
+  Background: {fileID: 0}
+  BackgroundMusic: {fileID: 8300000, guid: 84496596832c27c4fad7004cb402832e, type: 3}
+  Episode: 2

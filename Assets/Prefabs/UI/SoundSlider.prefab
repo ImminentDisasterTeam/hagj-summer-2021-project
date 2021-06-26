@@ -85,7 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3794085958111954626}
   - component: {fileID: 3794085958111954625}
-  - component: {fileID: 5126036182175559876}
+  - component: {fileID: 5495626410629640578}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5126036182175559876}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VolumeChange, Assembly-CSharp
         m_MethodName: ChangeVolume
         m_Mode: 1
@@ -178,7 +178,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
---- !u!114 &5126036182175559876
+--- !u!114 &5495626410629640578
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,12 +187,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3794085958111954627}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fd4e02302d0064439aaa3f79da32a74, type: 3}
+  m_Script: {fileID: 11500000, guid: d26656370724cb1469002a23c8d4f694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sfxSource: {fileID: 0}
-  _musicSource: {fileID: 0}
-  _slider: {fileID: 3794085958111954625}
 --- !u!1 &3794085958277229651
 GameObject:
   m_ObjectHideFlags: 0
