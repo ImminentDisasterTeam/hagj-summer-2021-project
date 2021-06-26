@@ -16,8 +16,8 @@ public class HealthComponent : MonoBehaviour {
         OnHealthChange?.Invoke(_currentHealth, maxHealth);
         
         if (_currentHealth == 0) {
-            OnDeath?.Invoke();
             Destroy(gameObject);
+            OnDeath?.Invoke();
         }
     }
 }

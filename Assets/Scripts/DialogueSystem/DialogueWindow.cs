@@ -34,6 +34,7 @@ namespace DialogueSystem
             _rightSpritePlaceholder.sprite = null;
             _leftSpritePlaceholder.sprite = null;
             _dialogueSceneNumber = PlayerPrefs.GetInt("dialogue");
+            _currentDialogue = _dialogues[_dialogueSceneNumber];
             _phraseNumber = 0;
             _dialogueWindow.SetActive(true);
             _backgroundArea.GetComponent<Image>().sprite = _currentDialogue.Background;
@@ -46,7 +47,7 @@ namespace DialogueSystem
             StopCoroutine(_typing);
             _isTyping = false;
 
-            NextScene();
+            NextScene?.Invoke();
             //todo:fadeout
         }
         void startPhrase()
@@ -203,13 +204,12 @@ namespace DialogueSystem
             _isTyping = false;
         }
 
-        void Start()
+        void Awake()
         {
-            _currentDialogue = _dialogues[_dialogueSceneNumber];
             _windowAnimator = _dialogueWindow.GetComponent<Animator>();
             _leftCharacterAnimator = _leftSpritePlaceholder.GetComponent<Animator>();
             _rightCharacterAnimator = _rightSpritePlaceholder.GetComponent<Animator>();
-            StartDialogue();
+            // StartDialogue();
         }
 
         void Update()

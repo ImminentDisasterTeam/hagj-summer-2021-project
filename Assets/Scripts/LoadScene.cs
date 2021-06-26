@@ -1,24 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LoadScene : MonoBehaviour
-{
-    private const string mainMenuSceneName = "MainMenu";
-    private const string dialogueSceneName = "Dialogues";
-    public void LoadSceneByName(string sceneName)
-    {
-        if (sceneName == mainMenuSceneName || sceneName == dialogueSceneName)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
+public class LoadScene : MonoBehaviour {
+    public const string MainMenu = "MainMenu";
+    public const string Dialogue = "Dialogues";
+    public const string Battle1 = "Battle1";
+    public const string Battle2 = "Battle2";
+    public const string Battle3 = "Battle3";
+
+    public void NewGame() {
+        PlayerPrefs.SetInt("dialogue", 0);
+        LoadSceneByName(Dialogue);
+    }
+    
+    public void LoadSceneByName(string sceneName) {
+        
         SceneManager.LoadScene(sceneName);
     }
 }

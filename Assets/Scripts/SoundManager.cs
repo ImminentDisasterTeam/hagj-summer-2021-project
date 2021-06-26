@@ -43,7 +43,6 @@ public class SoundManager : MonoBehaviour
     public void PlayMusic(AudioClip clip)
     {
         _musicSource.volume = PlayerPrefs.GetFloat("music_volume");
-        Debug.Log(_musicSource.volume);
         _musicSource.clip = clip;
         _musicSource.Play();
     }
