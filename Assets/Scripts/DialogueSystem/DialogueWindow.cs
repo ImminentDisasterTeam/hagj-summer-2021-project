@@ -103,8 +103,10 @@ namespace DialogueSystem
 
             if (supportSprite != null)
             {
-                ShowSprite(support, supportSprite);
-                ChangeSpriteColor(support, true);
+                if (support.sprite != null && mainSprite.name == main.sprite.name)
+                    ChangeSpriteColor(support, true);
+                else
+                    ShowSprite(support, supportSprite);
             }
             else
             {
@@ -172,7 +174,7 @@ namespace DialogueSystem
         }
         public void Back()
         {
-            Skip();
+            //StopAllCoroutines();
             if (_phraseNumber > 0)
             {
                 _phraseNumber--;
