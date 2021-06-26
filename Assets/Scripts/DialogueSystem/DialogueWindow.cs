@@ -11,22 +11,21 @@ namespace DialogueSystem
         private int _phraseNumber = 0;
         private float _waitLetter = 0.1f;
         private Dialogue _currentDialogue;
+        private Animator _windowAnimator;
+        private Animator _leftCharacterAnimator;
+        private Animator _rightCharacterAnimator;
+        [SerializeField] SoundManager _soundManager;
         [SerializeField] GameObject _dialogueWindow;
         [SerializeField] Text _textField;
         [SerializeField] Text _nameField;
         [SerializeField] Image _backgroundArea;
         [SerializeField] Image _leftSpritePlaceholder;
         [SerializeField] Image _rightSpritePlaceholder;
-        [SerializeField] AudioSource _audioSource;
         [SerializeField] AudioClip _typeSound;
         [SerializeField] Dialogue[] _dialogues;
 
         bool _isTyping;
         Coroutine _typing;
-        Coroutine _swapLeft;
-        Coroutine _swapRight;
-        Coroutine _hideLeft;
-        Coroutine _hideRight;
 
         public void StartDialogue()
         {
@@ -36,8 +35,7 @@ namespace DialogueSystem
             _phraseNumber = 0;
             _dialogueWindow.SetActive(true);
             _backgroundArea.GetComponent<Image>().sprite = _currentDialogue.Background;
-            _audioSource.clip = _currentDialogue.BackgroundMusic;
-            //_audioSource.Play();
+            _soundManager.PlayMusic(_currentDialogue.BackgroundMusic);
             startPhrase();
         }
 
@@ -48,103 +46,139 @@ namespace DialogueSystem
             Debug.Log("end");
             //TODO: fadeout
         }
-
         void startPhrase()
         {
             StopAllCoroutines();
             _typing = StartCoroutine(TypeText());
             _nameField.text = _currentDialogue.Phrases[_phraseNumber].CharacterName;
-            DisplaySprites();
+            DisplaySprites(_leftSpritePlaceholder, _rightSpritePlaceholder, _currentDialogue.Phrases[_phraseNumber]);
+        }
+        IEnumerator TypeText()
+        {
+            _isTyping = true;
+            _textField.text = "";
+
+            foreach (var letter in _currentDialogue.Phrases[_phraseNumber].Text)
+            {
+                _textField.text += letter;
+                _soundManager.PlaySound(_typeSound);
+                yield return new WaitForSeconds(_waitLetter);
+            }
+            _isTyping = false;
         }
 
-        void DisplaySprites()
+        void DisplaySprites(Image leftImage, Image rightImage, Phrase phrase, bool showInstantly = false)
         {
-            switch (_currentDialogue.Phrases[_phraseNumber].MainSprite)
+            switch (phrase.MainSprite)
             {
                 case Position.Left:
-                    DisplaySprite(ref _leftSpritePlaceholder, ref _rightSpritePlaceholder, _currentDialogue.Phrases[_phraseNumber].LeftCharacter, _currentDialogue.Phrases[_phraseNumber].RightCharacter, _swapLeft, _hideLeft);
+                    DisplaySpriteCorrectly(leftImage, rightImage, phrase.LeftCharacter, phrase.RightCharacter, showInstantly);
                     break;
                 case Position.Right:
-                    DisplaySprite(ref _rightSpritePlaceholder, ref _leftSpritePlaceholder, _currentDialogue.Phrases[_phraseNumber].RightCharacter, _currentDialogue.Phrases[_phraseNumber].LeftCharacter, _swapRight, _hideRight);
+                    DisplaySpriteCorrectly(rightImage, leftImage, phrase.RightCharacter, phrase.LeftCharacter, showInstantly);
                     break;
                 case Position.None:
-                    _hideLeft = StartCoroutine(HideSprite(_leftSpritePlaceholder));
-                    _hideRight = StartCoroutine(HideSprite(_rightSpritePlaceholder));
+                    StartCoroutine(ChangeSprite(leftImage));
+                    StartCoroutine(ChangeSprite(rightImage));
                     break;
                 default:
                     break;
             }
 
         }
-        void DisplaySprite(ref Image main, ref Image support, Sprite mainSprite, Sprite supportSprite, Coroutine swapCoroutine, Coroutine hideCoroutine)
+        void DisplaySpriteCorrectly(Image main, Image support, Sprite mainSprite, Sprite supportSprite, bool showInstantly = false)
         {
             if (main.sprite != null && mainSprite.name == main.sprite.name)
-                HighlightSprite(ref main);
+            {
+                ChangeSpriteColor(main, false);
+            }
             else
-                ShowSprite(ref main, mainSprite, swapCoroutine);
+            {
+                ShowSprite(main, mainSprite);
+            }
 
             if (supportSprite != null)
             {
-                ShowSprite(ref support, supportSprite, swapCoroutine);
-                DimSprite(ref support);
+                ShowSprite(support, supportSprite);
+                ChangeSpriteColor(support, true);
             }
             else
             {
-                hideCoroutine = StartCoroutine(HideSprite(support));
+                StartCoroutine(ChangeSprite(support));
             }
         }
-
-        IEnumerator SwapSprite(Image swappingImage, Sprite sprite)
+        void ShowSprite(Image image, Sprite sprite, bool showInstantly = false)
         {
-            swappingImage.GetComponent<Animator>().SetBool("isShown", false);
-            yield return new WaitWhile(() => swappingImage.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsTag("Shown"));
-            swappingImage.GetComponent<Animator>().SetBool("isShown", true);
-            swappingImage.sprite = sprite;
-        }
-        bool showInstantly;
-
-        void ShowSprite(ref Image image, Sprite sprite, Coroutine swapCoroutine)
-        {
-            if (!image.GetComponent<Animator>().GetBool("isShown") || showInstantly)
+            Animator animator = image.GetComponent<Animator>();
+            if (!animator.GetBool("isShown") || showInstantly)
             {
-                image.GetComponent<Animator>().SetBool("isShown", true);
+                animator.SetBool("isShown", true);
                 image.sprite = sprite;
-                image.color = new Color(1f, 1f, 1f);
             }
             else if (image.sprite != null && sprite.name != image.sprite.name)
             {
-                swapCoroutine = StartCoroutine(SwapSprite(image, sprite));
+                StartCoroutine(ChangeSprite(image, sprite));
             }
         }
-        IEnumerator HideSprite(Image image)
+        IEnumerator ChangeSprite(Image image, Sprite sprite = null)
         {
-            if (image.GetComponent<Animator>().GetBool("isShown"))
+            image.GetComponent<Animator>().SetBool("isShown", false);
+            yield return new WaitWhile(() => image.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsTag("Shown"));
+            if (sprite == null)
             {
-                image.GetComponent<Animator>().SetBool("isShown", false);
-                yield return new WaitWhile(() => image.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsTag("Shown"));
-                image.sprite = null;
+                image.sprite = sprite;
+            }
+            else
+            {
+                image.GetComponent<Animator>().SetBool("isShown", true);
+                image.sprite = sprite;
+
             }
         }
-        void DimSprite(ref Image image)
+        void ChangeSpriteColor(Image image, bool dim = false)
         {
-            if (image.GetComponent<Animator>().GetBool("isShown"))
-                image.color = new Color(0.5f, 0.5f, 0.5f);
+            if (dim)
+            {
+                if (image.GetComponent<Animator>().GetBool("isShown"))
+                {
+                    image.color = new Color(0.5f, 0.5f, 0.5f);
+                }
+            }
+            else
+            {
+                image.color = new Color(1f, 1f, 1f);
+            }
         }
-        void HighlightSprite(ref Image image)
+        void ShowText()
         {
-            image.color = new Color(1f, 1f, 1f);
+            _dialogueWindow.GetComponent<Animator>().SetBool("isShown", true);
+            if (_leftSpritePlaceholder.IsActive())
+                _leftCharacterAnimator.SetBool("isShown", true);
+            if (_rightSpritePlaceholder.IsActive())
+                _rightCharacterAnimator.SetBool("isShown", true);
+            Skip();
         }
-
-        public void Skip()
+        public void HideText()
         {
+            _dialogueWindow.GetComponent<Animator>().SetBool("isShown", false);
+            StartCoroutine(ChangeSprite(_leftSpritePlaceholder));
+            StartCoroutine(ChangeSprite(_rightSpritePlaceholder));
             if (_typing != null)
                 StopCoroutine(_typing);
-            _textField.text = _currentDialogue.Phrases[_phraseNumber].Text;
-            _isTyping = false;
+
+        }
+        public void Back()
+        {
+            Skip();
+            if (_phraseNumber > 0)
+            {
+                _phraseNumber--;
+                startPhrase();
+                Skip();
+            }
         }
         public void Next()
         {
-            showInstantly = false;
             if (_isTyping)
             {
                 Skip();
@@ -159,61 +193,27 @@ namespace DialogueSystem
                 EndDialogue();
             }
         }
-
-        public void Back()
+        public void Skip()
         {
-            showInstantly = true;
-            Skip();
-            if (_phraseNumber > 0)
-            {
-                _phraseNumber--;
-                startPhrase();
-                Skip();
-            }
-        }
-        public void HideText()
-        {
-            _dialogueWindow.GetComponent<Animator>().SetBool("isShown", false);
-            _hideLeft = StartCoroutine(HideSprite(_leftSpritePlaceholder));
-            _hideRight = StartCoroutine(HideSprite(_rightSpritePlaceholder));
             if (_typing != null)
                 StopCoroutine(_typing);
-            Debug.Log("hide");
-
-        }
-        private void ShowText()
-        {
-            _dialogueWindow.GetComponent<Animator>().SetBool("isShown", true);
-            if (_leftSpritePlaceholder.IsActive())
-                _leftSpritePlaceholder.GetComponent<Animator>().SetBool("isShown", true);
-            if (_rightSpritePlaceholder.IsActive())
-                _rightSpritePlaceholder.GetComponent<Animator>().SetBool("isShown", true);
-            Skip();
-        }
-        IEnumerator TypeText()
-        {
-            _isTyping = true;
-            _textField.text = "";
-
-            foreach (var letter in _currentDialogue.Phrases[_phraseNumber].Text)
-            {
-                _textField.text += letter;
-                _audioSource.PlayOneShot(_typeSound);
-                yield return new WaitForSeconds(_waitLetter);
-            }
+            _textField.text = _currentDialogue.Phrases[_phraseNumber].Text;
             _isTyping = false;
         }
 
         void Start()
         {
             _currentDialogue = _dialogues[_sceneNumber];
-            StartDialogue();
+            _windowAnimator = _dialogueWindow.GetComponent<Animator>();
+            _leftCharacterAnimator = _leftSpritePlaceholder.GetComponent<Animator>();
+            _rightCharacterAnimator = _rightSpritePlaceholder.GetComponent<Animator>();
+            StartDialogue();            
         }
 
         void Update()
         {
-            if (Input.GetButtonDown("Interact"))
-                if (!_dialogueWindow.GetComponent<Animator>().GetBool("isShown"))
+            if (!PauseController.Paused && Input.GetButtonDown("Interact"))
+                if (!_windowAnimator.GetBool("isShown"))
                     ShowText();
                 else if (_isTyping)
                     Skip();
