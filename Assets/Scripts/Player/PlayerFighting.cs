@@ -3,12 +3,13 @@ using System;
 
 public class PlayerFighting : MonoBehaviour {
     //health
-    [SerializeField] float health = 100;
-    float _currentHealth;
-    void SetCurrentHealth(float value) {
-        _currentHealth = value;
-        changeHealth(_currentHealth/health);
-    }
+    // [SerializeField] float health = 100;
+    [SerializeField] float damage = 15;
+    // float _currentHealth;
+    // void SetCurrentHealth(float value) {
+    //     _currentHealth = value;
+    //     changeHealth(_currentHealth/health);
+    // }
 
     //shield
     [SerializeField] float shieldAngleWidth = 90;
@@ -34,17 +35,19 @@ public class PlayerFighting : MonoBehaviour {
     [SerializeField] float combo1Radius;
 
     //actions
-    public Action<float> changeHealth;
+    // public Action<float> changeHealth;
     public Action<float> changeShieldStamina;
 
     Animator _animatorLegs;
     Animator _animatorTop;
+    HealthComponent _healthComponent;
 
     void Start() {
         _animatorLegs = transform.GetChild(0).GetComponent<Animator>();
         _animatorTop = GetComponent<Animator>();
-        _currentHealth = health;
+        // _currentHealth = health;
         _currentShieldStamina = shieldStamina;
+        _healthComponent = GetComponent<HealthComponent>();
     }
 
     void Update() {
@@ -68,18 +71,19 @@ public class PlayerFighting : MonoBehaviour {
 
     void GetDamaged(int damage) {
         _animatorTop.SetTrigger("damaged");
-        SetCurrentHealth(_currentHealth - damage);
+        _healthComponent.TakeDamage(damage);
+        // SetCurrentHealth(_currentHealth - damage);
     }
 
     void BlockHit(int damage) {
         if (_currentShieldStamina > 0) {
             Debug.Log("BLOCK");
             _animatorTop.SetTrigger("blockHit");
-            SetCurrentHealth(_currentHealth - damage * (100 - percentageOfBlockedDamage) / 100);
+            _healthComponent.TakeDamage(damage * (100 - percentageOfBlockedDamage) / 100);
             SetCurrentShieldStamina(_currentShieldStamina - blockStaminaRequired);
         } else {
             _animatorTop.SetTrigger("shieldBroken");
-            SetCurrentHealth(_currentHealth - damage);
+            _healthComponent.TakeDamage(damage);
         }
     }
 
@@ -108,7 +112,7 @@ public class PlayerFighting : MonoBehaviour {
         Vector2 attackCentre = transform.TransformPoint(combo1Offset);
         var enemies = Physics2D.OverlapCircleAll(attackCentre, combo1Radius, enemyLayers);
         foreach (var enemy in enemies) {
-            enemy.GetComponent<EnemyController>().TakeDamage();
+            enemy.GetComponent<HealthComponent>().TakeDamage(damage);
         }
     }
 

@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 2329120391567417292}
   - component: {fileID: 370037656}
   - component: {fileID: 370037663}
+  - component: {fileID: -7495049459747712905}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -249,6 +250,7 @@ MonoBehaviour:
   rollSpeed: 16
   speedWithShield: 3
   isHoldingShield: 0
+  _lastLookDirection: {x: 0, y: 0}
 --- !u!114 &2329120391567417291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,10 +305,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a1c448b5495f46da8685bf2c9c31c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  damage: 15
   shieldAngleWidth: 90
   shieldStamina: 100
   blockStaminaRequired: 10
   comboHitsNumber: 3
   maxComboDelay: 1.5
   canAttack: 1
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  combo1Offset: {x: 0, y: 0}
+  combo1Radius: 0
+--- !u!114 &-7495049459747712905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2329120391567417286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd89d132e2f84c168085d3208580bed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0

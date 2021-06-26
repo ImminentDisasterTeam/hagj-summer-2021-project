@@ -8,19 +8,18 @@ public class UIBars : MonoBehaviour
     [SerializeField] Slider healthBar;
     [SerializeField] Slider shieldStaminaBar;
     [SerializeField] Slider rollCoolDown;
+    [SerializeField] HealthComponent playerHealth;
     [SerializeField] PlayerFighting playerFighting;
     [SerializeField] PlayerController playerController;
 
     void Awake() {
-        playerFighting.changeHealth += ChangeHealth;
+        playerHealth.OnHealthChange += ChangeHealth;
         playerFighting.changeShieldStamina += ChangeShieldStamina;
-        
-        playerController = playerFighting.gameObject.GetComponent<PlayerController>();
         playerController.changeRollCoolDown += ChangeRollCoolDown;
     }
 
-    void ChangeHealth(float value) {
-        healthBar.value = value;
+    void ChangeHealth(float current, float max) {
+        healthBar.value = current / max;
     }
 
     void ChangeShieldStamina(float value) {
