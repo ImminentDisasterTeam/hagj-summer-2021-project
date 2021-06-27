@@ -44,11 +44,14 @@ namespace DialogueSystem
 
         void EndDialogue()
         {
-            StopAllCoroutines();
             NextScene?.Invoke();
         }
         void startPhrase()
         {
+            if(_leftCharacterAnimator.GetBool("isShown"))
+                _leftCharacterAnimator.SetBool("isShown",false);
+            if (_rightCharacterAnimator.GetBool("isShown"))
+                _rightCharacterAnimator.SetBool("isShown", false);
             StopAllCoroutines();
             _typing = StartCoroutine(TypeText());
             _nameField.text = _currentDialogue.Phrases[_phraseNumber].CharacterName;
@@ -79,8 +82,10 @@ namespace DialogueSystem
                     DisplaySpriteCorrectly(rightImage, leftImage, phrase.RightCharacter, phrase.LeftCharacter, showInstantly);
                     break;
                 case Position.None:
-                    StartCoroutine(ChangeSprite(leftImage));
-                    StartCoroutine(ChangeSprite(rightImage));
+                    if (leftImage.sprite != null)
+                        StartCoroutine(ChangeSprite(leftImage));
+                    if (rightImage.sprite != null)
+                        StartCoroutine(ChangeSprite(rightImage));
                     break;
                 default:
                     break;
@@ -125,7 +130,8 @@ namespace DialogueSystem
         }
         IEnumerator ChangeSprite(Image image, Sprite sprite = null)
         {
-            image.GetComponent<Animator>().SetBool("isShown", false);
+            if (image.GetComponent<Animator>().GetBool("isShown"))
+                image.GetComponent<Animator>().SetBool("isShown", false);
             yield return new WaitWhile(() => image.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsTag("Shown"));
             if (sprite == null)
             {

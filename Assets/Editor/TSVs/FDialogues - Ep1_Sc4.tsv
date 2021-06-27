@@ -1,0 +1,6 @@
+Background	Music			
+forest	neutral			
+Name	Text	Position (None/Left/Right)	LeftSprite	RightSprite
+Shamhat	You are wise, Enkidu, and now you have become like a god. Why do you want to run wild with the beasts in the hills? Come with me. I will take you to strong-walled Uruk, to the blessed temple of Ishtar and of Anu, of love and of heaven there Gilgamesh lives, who is very strong, and like a wild bull he lords it over men.	None	Enkidu	None
+Enkidu	Come, woman, and take me to that holy temple, to the house of Anu and of Ishtar, and to the place where Gilgamesh lords it over the people. I will challenge him boldly.	Left	Enkidu	None
+Shamhat	Let us go, and let him see your face. I know very well where Gilgamesh is in great Uruk. O Enkidu, you who love life, I will show you Gilgamesh, a man of many moods. You shall look at him well in his radiant manhood. His body is perfect in strength and maturity. He is stronger than you, so leave your boasting. I tell you, even before you have left the wilderness, Gilgamesh will know in his dreams that you are coming.	None	Enkidu	None

@@ -512,18 +512,18 @@ MonoBehaviour:
   _rightSpritePlaceholder: {fileID: 434412354290792260}
   _typeSound: {fileID: 8300000, guid: 3495b4b8ac89ca441a2ff6b780fbc6de, type: 3}
   _dialogues:
-  - {fileID: 11400000, guid: d7757d092f72f39428b810018da5fdd9, type: 2}
-  - {fileID: 11400000, guid: 87862b3c4b4a6a149b0bad07f23c08f2, type: 2}
-  - {fileID: 11400000, guid: 4c57816f9a81777408d935341f283c1b, type: 2}
-  - {fileID: 11400000, guid: 1f5f968571507294bbf2dacb9c2d73a9, type: 2}
-  - {fileID: 11400000, guid: 16579aa6f6d257440a6ca55e9430702e, type: 2}
-  - {fileID: 11400000, guid: 296d5401e7c27d74aa695339ec513fc7, type: 2}
-  - {fileID: 11400000, guid: 3d806ff06c35bff45a3085a841b9f53d, type: 2}
-  - {fileID: 11400000, guid: 84a02a61c79d22144a0eefdb2c5320cd, type: 2}
-  - {fileID: 11400000, guid: f8b101f1852962446921c2cf17a7de70, type: 2}
-  - {fileID: 11400000, guid: 9b6150b11d7b3c24bb14aafa507c2cc6, type: 2}
-  - {fileID: 11400000, guid: b0167f4c8f434494a89cf468a38d2b40, type: 2}
-  - {fileID: 11400000, guid: 77d268401b213c9438375d157a448972, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &434412354949150657
 GameObject:
   m_ObjectHideFlags: 0

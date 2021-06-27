@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c344fe75043ff7469499ca140b0dbe4, type: 3}
+  m_Name: FDialogues - Ep2_Sc2
+  m_EditorClassIdentifier: 
+  Title: FDialogues - Ep2_Sc2
+  Phrases:
+  - CharacterName: Narrator
+    Text: Gilgamesh and Enkidu had many adventures together. They had a trip to the
+      cedar forest, where the Humbaba, a ferocious giant, lived. He was appointed
+      to guard cedars and armed with sevenfold terrors. When he roared it was like
+      the torrent of the storm, his breath was like fire, and his jaws were death
+      itself. But Gilgamesh and Enkidu were strong and courageous and were able to
+      defeat Humbaba.
+    MainSprite: 0
+    LeftCharacter: {fileID: 0}
+    RightCharacter: {fileID: 0}
+  - CharacterName: Narrator
+    Text: The greatest goddess Ishtar offered Gilgamesh to become her husband. But
+      Gilgamesh knew that her former lovers suffered from her. Therefore, he refused,
+      and Ishtar in anger sent Bull of Heaven to Uruk. But Gilgamesh, with the help
+      of Enkidu, was able to slay the bull too.
+    MainSprite: 0
+    LeftCharacter: {fileID: 0}
+    RightCharacter: {fileID: 0}
+  - CharacterName: Narrator
+    Text: Gilgamesh and Enkidu were so strong that the gods turned their attention
+      to them. And they decided that they should not be allowed to continue rampaging
+      on earth.
+    MainSprite: 0
+    LeftCharacter: {fileID: 0}
+    RightCharacter: {fileID: 0}
+  Background: {fileID: 0}
+  BackgroundMusic: {fileID: 8300000, guid: f662a5d3bfedb0244a3a6841747a1638, type: 3}

@@ -11,11 +11,11 @@ public class GameManager : MonoBehaviour
 
     static readonly Dictionary<int, string> LastDialogueInSceneNumbers = new Dictionary<int, string> {
         {4, LoadScene.Battle1},
-        {7, LoadScene.Battle2},
-        {9, LoadScene.Battle3}
+        // {7, LoadScene.Battle2},
+        // {9, LoadScene.Battle3}
     };
 
-    const int LastDialogueInGameNumber = 11;
+    const int LastDialogueInGameNumber = 8;
 
     void Start() {
         InitiatePlayerPrefs();

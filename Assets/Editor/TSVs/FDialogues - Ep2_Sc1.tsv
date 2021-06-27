@@ -1,0 +1,6 @@
+Background	Music			
+palace	happy			
+Name	Text	Position (None/Left/Right)	LeftSprite	RightSprite
+Enkidu	There is not another like you in the world. Ninsun, who is as strong as a wild ox in the byre, she was the mother who bore you, and now you are raised above all men, and Enlil has given you the kingship, for your strength surpasses the strength of men.	Left	Enkidu	Gilgamesh
+Gilgamesh	Throughout the country your hand is mighty, as from a stone from heaven, your hands are strong! Mother, bless him to be my brother!	Right	Enkidu	Gilgamesh
+Ninsun	Strong Enkidu, you are not the child of my body, but I will receive you as my adopted son. You are my other child like the foundlings they bring to the temple. Serve Gilgamesh as a foundling serves the temple and the priestess who reared him.	None	Enkidu	None
