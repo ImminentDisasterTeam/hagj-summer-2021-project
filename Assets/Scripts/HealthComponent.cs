@@ -4,6 +4,8 @@ using UnityEngine;
 public class HealthComponent : MonoBehaviour {
     [SerializeField] float maxHealth;
     float _currentHealth;
+
+    public bool invulnerable;
     public Action<float, float> OnHealthChange;
     public Action OnDeath;
 
@@ -12,6 +14,10 @@ public class HealthComponent : MonoBehaviour {
     }
 
     public void TakeDamage(float damage) {
+        if (invulnerable) {
+            return;
+        }
+
         _currentHealth = Mathf.Max(0, _currentHealth - damage);
         OnHealthChange?.Invoke(_currentHealth, maxHealth);
         

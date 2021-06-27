@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour {
         _mainCamera = Camera.main;
         _animatorLegs = transform.GetChild(0).GetComponent<Animator>();
         _animatorTop = GetComponent<Animator>();
-        Debug.Log(_animatorLegs.gameObject.name);
     }
 
     void Update() {
@@ -50,12 +49,10 @@ public class PlayerController : MonoBehaviour {
             _moveDirection = Vector2.zero;
         }
         if (_moveDirection.Equals(Vector2.zero)) {
-            Debug.Log("Idle");
             _animatorLegs.SetBool("isMoving", false);
             _animatorTop.SetBool("isMoving", false);
         }
         else {
-            Debug.Log("Moving");
             _animatorLegs.SetBool("isMoving", true);
             _animatorTop.SetBool("isMoving", true);
         }
@@ -75,10 +72,8 @@ public class PlayerController : MonoBehaviour {
         //angle of movement
         var angle = SignedAngleWithLookDirection(_moveDirection);
         if (angle < angleOfVerticalMovement/2 || angle > 90 + angleOfVerticalMovement/2) {
-            Debug.Log("Vertical Movement");
             _animatorLegs.SetBool("moveVertical", true);
         } else {
-            Debug.Log("Horizontal Movement");
             _animatorLegs.SetBool("moveVertical", false);
         }
     }
