@@ -2,14 +2,7 @@ using UnityEngine;
 using System;
 
 public class PlayerFighting : MonoBehaviour {
-    //health
-    // [SerializeField] float health = 100;
     [SerializeField] float damage = 15;
-    // float _currentHealth;
-    // void SetCurrentHealth(float value) {
-    //     _currentHealth = value;
-    //     changeHealth(_currentHealth/health);
-    // }
 
     //shield
     [SerializeField] float shieldAngleWidth = 90;
@@ -23,35 +16,37 @@ public class PlayerFighting : MonoBehaviour {
     }
 
     //attack
-    [SerializeField] int comboHitsNumber = 3;
     [SerializeField] float maxComboDelay = 0.9f;
     int _hitNumber = -1;
     float _lastClickedTime;
     public bool canAttack = true;
 
-    [SerializeField] LayerMask enemyLayers;
+    [SerializeField] private AttackAreaController[] attackAreas;
+    private int comboHitsNumber;
 
-    [SerializeField] Vector2 combo1Offset;
-    [SerializeField] float combo1Radius;
-    [SerializeField] Vector2 combo2Offset;
-    [SerializeField] float combo2Radius;
-    [SerializeField] Vector2 combo3Offset;
-    [SerializeField] float combo3Radius;
+    [SerializeField] private Collider2D playerCollider;
 
     //actions
-    // public Action<float> changeHealth;
     public Action<float> changeShieldStamina;
 
     Animator _animatorLegs;
     Animator _animatorTop;
     HealthComponent _healthComponent;
 
+    void Awake()
+    {
+        foreach (var attackArea in attackAreas)
+        {
+            attackArea.damageTarget = DamageTarget;
+        }
+    }
+
     void Start() {
         _animatorLegs = transform.GetChild(0).GetComponent<Animator>();
         _animatorTop = GetComponent<Animator>();
-        // _currentHealth = health;
         _currentShieldStamina = shieldStamina;
         _healthComponent = GetComponent<HealthComponent>();
+        comboHitsNumber = attackAreas.Length;
     }
 
     void Update() {
@@ -76,7 +71,6 @@ public class PlayerFighting : MonoBehaviour {
     void GetDamaged(int damage) {
         _animatorTop.SetTrigger("damaged");
         _healthComponent.TakeDamage(damage);
-        // SetCurrentHealth(_currentHealth - damage);
     }
 
     void BlockHit(int damage) {
@@ -92,6 +86,8 @@ public class PlayerFighting : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D other) {
+        if (!other.IsTouching(playerCollider)) 
+            return;
         if (!other.gameObject.CompareTag("Enemy")) {
             return;
         }
@@ -112,47 +108,9 @@ public class PlayerFighting : MonoBehaviour {
         }
     }
     
-    public void ComboAttack1() {
-        Vector2 attackCentre = transform.TransformPoint(combo1Offset);
-        var enemies = Physics2D.OverlapCircleAll(attackCentre, combo1Radius, enemyLayers);
-        foreach (var enemy in enemies) {
+    public void DamageTarget(Collider2D enemy) {
+        if (enemy.CompareTag("Enemy")) {
             enemy.GetComponent<HealthComponent>().TakeDamage(damage);
         }
-    }
-
-    public void ComboAttack2() {
-        Vector2 attackCentre = transform.TransformPoint(combo2Offset);
-        var enemies = Physics2D.OverlapCircleAll(attackCentre, combo2Radius, enemyLayers);
-        foreach (var enemy in enemies) {
-            enemy.GetComponent<HealthComponent>().TakeDamage(damage);
-        }
-    }
-    
-    public void ComboAttack3()
-    {
-        Vector2 attackCentre = transform.TransformPoint(combo3Offset);
-        Vector2 leftBottomPoint = attackCentre;
-        Vector2 rightTopPoint = attackCentre + new Vector2(combo3Radius, 2*combo3Radius);
-        var enemies = Physics2D.OverlapAreaAll(leftBottomPoint, rightTopPoint, enemyLayers);
-        foreach (var enemy in enemies) {
-            enemy.GetComponent<HealthComponent>().TakeDamage(damage);
-        }
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        // Draw a yellow sphere
-        // Gizmos.color = Color.yellow;
-        // Vector2 attackCentre = transform.TransformPoint(combo1Offset);
-        // Gizmos.DrawSphere(attackCentre, combo1Radius);
-        
-        // Gizmos.color = Color.green;
-        // Vector2 attackCentre = transform.TransformPoint(combo2Offset);
-        // Gizmos.DrawSphere(attackCentre, combo2Radius);
-        
-        Gizmos.color = Color.red;
-        Vector3 attackCentre = transform.TransformPoint(combo3Offset);
-        // Gizmos.DrawCube(attackCentre, combo3Radius);
-        Gizmos.DrawCube(attackCentre, new Vector3(combo3Radius, 2*combo3Radius, 0f));
     }
 }
