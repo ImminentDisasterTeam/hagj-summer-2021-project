@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class UIBossHP : MonoBehaviour
 {
     [SerializeField] Slider healthBar;
+    [SerializeField] HealthComponent bothHealth;
 
-    void Awake()
-    {
-        //set action to change boss hp here
+    void Start() {
+        bothHealth.OnHealthChange += ChangeHealth;
     }
 
     void ChangeHealth(float current, float max)

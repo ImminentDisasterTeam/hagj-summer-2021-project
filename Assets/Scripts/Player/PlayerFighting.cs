@@ -88,7 +88,7 @@ public class PlayerFighting : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other) {
         if (!other.IsTouching(playerCollider)) 
             return;
-        if (!other.gameObject.CompareTag("Enemy")) {
+        if (!other.gameObject.CompareTag("Enemy") || !other.gameObject.CompareTag("EnemyHit") ) {
             return;
         }
 
