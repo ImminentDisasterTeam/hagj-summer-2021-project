@@ -38,5 +38,5 @@ MonoBehaviour:
     MainSprite: 0
     LeftCharacter: {fileID: 0}
     RightCharacter: {fileID: 0}
-  Background: {fileID: 0}
+  Background: {fileID: 21300000, guid: f3c3c51488481e9408938bcf241b8647, type: 3}
   BackgroundMusic: {fileID: 8300000, guid: 7e05299d3023223498a4de5db4b0871d, type: 3}
