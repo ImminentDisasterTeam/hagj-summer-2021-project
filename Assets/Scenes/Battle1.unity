@@ -123,6 +123,30 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &197006055 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2329120391567417288, guid: 1481d2d23213c443eae133bc48f46e50,
+    type: 3}
+  m_PrefabInstance: {fileID: 2329120391868501073}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &197006056 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8386625012190477260, guid: 1481d2d23213c443eae133bc48f46e50,
+    type: 3}
+  m_PrefabInstance: {fileID: 2329120391868501073}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd89d132e2f84c168085d3208580bed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &197006057 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 4352886844332402277, guid: 1481d2d23213c443eae133bc48f46e50,
+    type: 3}
+  m_PrefabInstance: {fileID: 2329120391868501073}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &283937820
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,7 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2773718a29024e3a832d57b27ee6507d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 1502422364}
+  playerHealth: {fileID: 197006056}
   bossHealth: {fileID: 259944956416044221}
 --- !u!4 &1026112168
 Transform:
@@ -405,18 +429,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1502422364 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -7495049459747712905, guid: 1481d2d23213c443eae133bc48f46e50,
-    type: 3}
-  m_PrefabInstance: {fileID: 2329120391868501073}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bd89d132e2f84c168085d3208580bed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1568205319
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,6 +541,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1800348889 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 259944957311792326, guid: 9524081dbc9b0a2469c7f4b5a0bcb568,
+    type: 3}
+  m_PrefabInstance: {fileID: 259944956416044220}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1800348890
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800348889}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &1800348893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800348889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f486bf68ecee4f49838191a90862ab22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 197006055}
+  moveSpeed: 2.5
+  chargeSpeed: 10
+  chargeDamage: 30
+  recoverAfterDashTime: 1
+  chargeDistance: 8
+  powerupHealthPart: 0.3
+  poweruped: 0
+  rollPrepared: 0
+  finishedBeingDamaged: 0
+  attackStopped: 0
 --- !u!1001 &259944956416044220
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -536,6 +598,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1286829414, guid: 9524081dbc9b0a2469c7f4b5a0bcb568, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286829414, guid: 9524081dbc9b0a2469c7f4b5a0bcb568, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2040671437, guid: 9524081dbc9b0a2469c7f4b5a0bcb568, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 259944957311792321, guid: 9524081dbc9b0a2469c7f4b5a0bcb568,
         type: 3}
       propertyPath: m_RootOrder
@@ -544,12 +618,12 @@ PrefabInstance:
     - target: {fileID: 259944957311792321, guid: 9524081dbc9b0a2469c7f4b5a0bcb568,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.91000366
+      value: 5.33
       objectReference: {fileID: 0}
     - target: {fileID: 259944957311792321, guid: 9524081dbc9b0a2469c7f4b5a0bcb568,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.89001465
+      value: -0.87
       objectReference: {fileID: 0}
     - target: {fileID: 259944957311792321, guid: 9524081dbc9b0a2469c7f4b5a0bcb568,
         type: 3}
@@ -591,6 +665,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 259944957311792322, guid: 9524081dbc9b0a2469c7f4b5a0bcb568,
+        type: 3}
+      propertyPath: maxHealth
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 259944957311792326, guid: 9524081dbc9b0a2469c7f4b5a0bcb568,
         type: 3}
       propertyPath: m_Name
@@ -604,7 +683,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 259944956416044220}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1800348889}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bd89d132e2f84c168085d3208580bed, type: 3}
@@ -634,6 +713,10 @@ PrefabInstance:
       propertyPath: combo1Offset.y
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 370037663, guid: 1481d2d23213c443eae133bc48f46e50, type: 3}
+      propertyPath: playerCollider
+      value: 
+      objectReference: {fileID: 197006057}
     - target: {fileID: 370037663, guid: 1481d2d23213c443eae133bc48f46e50, type: 3}
       propertyPath: enemyLayers.m_Bits
       value: 64
@@ -836,7 +919,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerHealth
       value: 
-      objectReference: {fileID: 1502422364}
+      objectReference: {fileID: 197006056}
     - target: {fileID: 7512901657754513005, guid: 49ef87b7d93e546b3b9cc317bc4401a8,
         type: 3}
       propertyPath: rollCoolDown
