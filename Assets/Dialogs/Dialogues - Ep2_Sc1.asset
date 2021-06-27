@@ -38,4 +38,4 @@ MonoBehaviour:
     RightCharacter: {fileID: 0}
   Background: {fileID: 0}
   BackgroundMusic: {fileID: 8300000, guid: 8381c5829f3f3f143a915044b9e2bbe8, type: 3}
-  Episode: 2
+  Episode: 0

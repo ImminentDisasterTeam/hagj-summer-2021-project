@@ -10,6 +10,5 @@ namespace DialogueSystem
         public List<Phrase> Phrases;
         public Sprite Background;
         public AudioClip BackgroundMusic;
-        public int Episode;
     }
 }

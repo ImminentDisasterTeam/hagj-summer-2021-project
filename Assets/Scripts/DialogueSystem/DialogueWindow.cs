@@ -44,11 +44,8 @@ namespace DialogueSystem
 
         void EndDialogue()
         {
-            StopCoroutine(_typing);
-            _isTyping = false;
-
+            StopAllCoroutines();
             NextScene?.Invoke();
-            //todo:fadeout
         }
         void startPhrase()
         {
@@ -160,7 +157,7 @@ namespace DialogueSystem
             _windowAnimator.SetBool("isShown", true);
             if (_leftSpritePlaceholder.sprite != null)
                 _leftCharacterAnimator.SetBool("isShown", true);
-            if (_rightSpritePlaceholder != null)
+            if (_rightSpritePlaceholder.sprite != null)
                 _rightCharacterAnimator.SetBool("isShown", true);
             Skip();
         }
